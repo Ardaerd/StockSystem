@@ -14,16 +14,18 @@ namespace StockSystem.Forms
     public partial class StockProductForm : Form
     {
         private SelectProductForm selectProductForm = null;
+        private StockCompanyForm stockCompanyForm = null;
         private Form1 form1;
         private StockProduct stockProduct;
         private double price;
         private string query = "SELECT * FROM stockProduct";
 
-        public StockProductForm(Form1 form1)
+        public StockProductForm(StockCompanyForm stockCompanyForm)
         {
             InitializeComponent();
             this.form1 = form1;
             stockProduct = new StockProduct();
+            this.stockCompanyForm = stockCompanyForm;
         }
 
         private void button_selectProduct_Click(object sender, EventArgs e)
@@ -35,7 +37,7 @@ namespace StockSystem.Forms
         private void label2_Click(object sender, EventArgs e)
         {
             this.Close();
-            form1.Show();
+            stockCompanyForm.Show();
         }
 
         private void label2_MouseEnter(object sender, EventArgs e)
@@ -51,7 +53,7 @@ namespace StockSystem.Forms
         private void StockProductForm_Load(object sender, EventArgs e)
         {
 
-            form1.Hide();
+            stockCompanyForm.Hide();
 
             // Show table in dataGridView
             dataGridView_stockProduct.DataSource = stockProduct.stockProductList(query);
@@ -70,16 +72,24 @@ namespace StockSystem.Forms
 
         private void button_add_Click(object sender, EventArgs e)
         {
-            int pid = (int)numericUpDown_ProductId.Value;
-            int quantity = (int)numericUpDownQuantity.Value;
-            double price = Convert.ToDouble(selectProductForm.getPrice());
-            double total = price * quantity;
-
-
-            if (stockProduct.addStockProduct(pid, quantity, price, total))
+            try
             {
-                dataGridView_stockProduct.DataSource = stockProduct.stockProductList(query);
-                MessageBox.Show("Product is added to the Stock Successfully!", "Product Added Successfully", MessageBoxButtons.OK);
+                int sid = stockCompanyForm.getSid();
+                int pid = (int)numericUpDown_ProductId.Value;
+                int quantity = (int)numericUpDownQuantity.Value;
+                double price = Convert.ToDouble(selectProductForm.getPrice());
+                double total = price * quantity;
+
+
+                if (stockProduct.addStockProduct(sid, pid, quantity, price, total))
+                {
+                    dataGridView_stockProduct.DataSource = stockProduct.stockProductList(query);
+                    MessageBox.Show("Product is added to the Stock Successfully!", "Product Added Successfully", MessageBoxButtons.OK);
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error");
             }
         }
 

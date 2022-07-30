@@ -33,8 +33,6 @@
             this.button_productInfo = new System.Windows.Forms.Button();
             this.button_productPrice = new System.Windows.Forms.Button();
             this.button_comapny = new System.Windows.Forms.Button();
-            this.button_companyProduct = new System.Windows.Forms.Button();
-            this.button_stockProduct = new System.Windows.Forms.Button();
             this.button_stockCompany = new System.Windows.Forms.Button();
             this.button_stockTracking = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -99,36 +97,14 @@
             this.button_comapny.UseVisualStyleBackColor = true;
             this.button_comapny.Click += new System.EventHandler(this.button_comapny_Click);
             // 
-            // button_companyProduct
-            // 
-            this.button_companyProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_companyProduct.Location = new System.Drawing.Point(232, 154);
-            this.button_companyProduct.Name = "button_companyProduct";
-            this.button_companyProduct.Size = new System.Drawing.Size(225, 43);
-            this.button_companyProduct.TabIndex = 5;
-            this.button_companyProduct.Text = "Company Product";
-            this.button_companyProduct.UseVisualStyleBackColor = true;
-            this.button_companyProduct.Click += new System.EventHandler(this.button_companyProduct_Click);
-            // 
-            // button_stockProduct
-            // 
-            this.button_stockProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_stockProduct.Location = new System.Drawing.Point(487, 68);
-            this.button_stockProduct.Name = "button_stockProduct";
-            this.button_stockProduct.Size = new System.Drawing.Size(225, 43);
-            this.button_stockProduct.TabIndex = 6;
-            this.button_stockProduct.Text = "Stock Product";
-            this.button_stockProduct.UseVisualStyleBackColor = true;
-            this.button_stockProduct.Click += new System.EventHandler(this.button_stockProduct_Click);
-            // 
             // button_stockCompany
             // 
             this.button_stockCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_stockCompany.Location = new System.Drawing.Point(487, 154);
+            this.button_stockCompany.Location = new System.Drawing.Point(478, 68);
             this.button_stockCompany.Name = "button_stockCompany";
             this.button_stockCompany.Size = new System.Drawing.Size(225, 43);
             this.button_stockCompany.TabIndex = 7;
-            this.button_stockCompany.Text = "Stock Company";
+            this.button_stockCompany.Text = "Stock";
             this.button_stockCompany.UseVisualStyleBackColor = true;
             this.button_stockCompany.Click += new System.EventHandler(this.button_stockCompany_Click);
             // 
@@ -150,8 +126,6 @@
             this.ClientSize = new System.Drawing.Size(724, 294);
             this.Controls.Add(this.button_stockTracking);
             this.Controls.Add(this.button_stockCompany);
-            this.Controls.Add(this.button_stockProduct);
-            this.Controls.Add(this.button_companyProduct);
             this.Controls.Add(this.button_comapny);
             this.Controls.Add(this.button_productPrice);
             this.Controls.Add(this.button_productInfo);
@@ -161,7 +135,6 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }
@@ -173,8 +146,6 @@
         private System.Windows.Forms.Button button_productInfo;
         private System.Windows.Forms.Button button_productPrice;
         private System.Windows.Forms.Button button_comapny;
-        private System.Windows.Forms.Button button_companyProduct;
-        private System.Windows.Forms.Button button_stockProduct;
         private System.Windows.Forms.Button button_stockCompany;
         private System.Windows.Forms.Button button_stockTracking;
     }

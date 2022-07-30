@@ -51,7 +51,7 @@ CREATE VIEW companyProduct_view AS
     INNER JOIN company C ON CP.cid = C.cid;
 
 CREATE VIEW stockTracking_view AS
-    SELECT C.cname,P.pname,P.price,P.stock,SC.status,SC.stockEntryDate
+    SELECT C.cname,P.pname,P.price,SP.quantity,P.stock,SC.status,SC.stockEntryDate,SC.irsaliyeDate,SC.irsaliyeNo
     FROM productInfo P, company C, stockCompany SC, stockProduct SP, companyProduct CP
     WHERE C.cid = SC.cid AND P.pid = SP.pid AND P.pid = CP.pid AND C.cid = CP.cid;
 
@@ -99,7 +99,7 @@ CREATE TABLE companyProduct(
 );
 
 CREATE TABLE stockProduct(
-    sid NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
+    sid NUMBER(38),
     pid NUMBER(38),
     quantity NUMBER(38),
     price NUMBER(8,2),
@@ -107,7 +107,8 @@ CREATE TABLE stockProduct(
     insertDateTime DATE,
     updateDateTime DATE,
     PRIMARY KEY(sid,pid),
-    FOREIGN KEY(pid) REFERENCES productInfo(pid)
+    FOREIGN KEY(pid) REFERENCES productInfo(pid),
+    FOREIGN KEY(sid) REFERENCES stockCompany(sid)
 );
 
 CREATE TABLE stockCompany(

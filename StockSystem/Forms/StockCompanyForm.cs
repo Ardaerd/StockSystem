@@ -16,12 +16,15 @@ namespace StockSystem.Forms
         private Form1 form1;
         private SelectCompanyForm selectCompanyForm;
         private StockCompany stockCompany;
-        private string query = "SELECT * FROM stockCompany";
+        private StockProductForm stockProductForm;
+        private string query = "SELECT * FROM stockCompany_view ORDER BY sid ASC";
+        private int sid;
         public StockCompanyForm(Form1 form1)
         {
             InitializeComponent();
             this.form1 = form1;
             stockCompany = new StockCompany();
+            stockProductForm = new StockProductForm(this);
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -42,12 +45,16 @@ namespace StockSystem.Forms
 
         private void button_selectCompany_Click(object sender, EventArgs e)
         {
-            selectCompanyForm = new SelectCompanyForm(null, this);
+            selectCompanyForm = new SelectCompanyForm(this);
             selectCompanyForm.Show();
         }
 
         private void StockCompanyForm_Load(object sender, EventArgs e)
         {
+            dateTimePicker_IrsaliyeDate.Format = DateTimePickerFormat.Custom;
+            dateTimePicker_IrsaliyeDate.CustomFormat = "dd/MM/yyyy";
+
+
             // Show table in dataGridView
             dataGridView_stockCompany.DataSource = stockCompany.stockCompanyList(query);
 
@@ -65,25 +72,39 @@ namespace StockSystem.Forms
 
         private void button_add_Click(object sender, EventArgs e)
         {
-            int cid = (int)numericUpDown_companyId.Value;
-            int tip = (int)numericUpDown_tip.Value;
-            string status = textBox_status.Text;
-            DateTime irsaliyeDate = dateTimePicker_IrsaliyeDate.Value;
-            int irsaliyeNo = (int)numericUpDown_IrsaliyeNo.Value;
-
-            if (cid == 0)
+            try
             {
-                MessageBox.Show("You have to fill cid", "Fill CID", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-            }
+                int cid = (int)numericUpDown_companyId.Value;
+                int tip = (int)numericUpDown_tip.Value;
+                string status = textBox_status.Text;
+                DateTime irsaliyeDate = dateTimePicker_IrsaliyeDate.Value.Date;
+                int irsaliyeNo = (int)numericUpDown_IrsaliyeNo.Value;
 
-            else
-            {
-                if (stockCompany.addStockCompany(cid, tip, status, irsaliyeDate, irsaliyeNo))
+                if (cid == 0)
                 {
-                    dataGridView_stockCompany.DataSource = stockCompany.stockCompanyList(query);
-                    MessageBox.Show("Company is added to the Stock Successfully!", "Company Added Successfully", MessageBoxButtons.OK);
+                    MessageBox.Show("You have to fill cid", "Fill CID", MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
                 }
+
+                else
+                {
+                    if (stockCompany.addStockCompany(cid, tip, status, irsaliyeDate, irsaliyeNo))
+                    {
+                        dataGridView_stockCompany.DataSource = stockCompany.stockCompanyList(query);
+                        MessageBox.Show("Company is added to the Stock Successfully!", "Company Added Successfully", MessageBoxButtons.OK);
+
+                        int row = stockCompany.stockCompanyList(query).Rows.Count - 1;
+                        this.sid = Int32.Parse(dataGridView_stockCompany.Rows[row].Cells[0].Value.ToString());
+                    }
+                }
+
+                stockProductForm.Show();
+                this.Hide();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
             }
         }
 
@@ -95,7 +116,7 @@ namespace StockSystem.Forms
                 int cid = (int)numericUpDown_companyId.Value;
                 int tip = (int)numericUpDown_tip.Value;
                 string status = textBox_status.Text;
-                DateTime irsaliyeDate = dateTimePicker_IrsaliyeDate.Value;
+                DateTime irsaliyeDate = dateTimePicker_IrsaliyeDate.Value.Date;
                 int irsaliyeNo = (int)numericUpDown_IrsaliyeNo.Value;
 
                 if (stockCompany.editStockProduct(sid, cid, tip, status,irsaliyeDate,irsaliyeNo))
@@ -151,6 +172,27 @@ namespace StockSystem.Forms
             dateTimePicker_IrsaliyeDate.Text = dataGridView_stockCompany.CurrentRow.Cells[5].Value.ToString();
             numericUpDown_IrsaliyeNo.Text = dataGridView_stockCompany.CurrentRow.Cells[6].Value.ToString();
 
+        }
+
+        public int getSid()
+        {
+            return sid;
+        }
+
+        private void button_addProduct_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+                sid = (int)numericUpDown_stockId.Value;
+
+                stockProductForm.Show();
+                this.Hide();
+                
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Invalid ID");
+            }
         }
     }
 }

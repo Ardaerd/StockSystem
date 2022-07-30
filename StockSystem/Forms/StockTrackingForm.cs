@@ -24,18 +24,23 @@ namespace StockSystem.Forms
 
         private void button_stock_Click(object sender, EventArgs e)
         {
-            DateTime startingDate = dateTimePicker_startingDate.Value;
-            DateTime endingDate = dateTimePicker_endingDate.Value;
+            DateTime startingDate = dateTimePicker_startingDate.Value.Date;
+            DateTime endingDate = dateTimePicker_endingDate.Value.Date;
             string companyName = textBox_companyName.Text;
 
-            string date1 = startingDate.ToString("dd-MM-yyyy");
-            string date2 = endingDate.ToString("dd-MM-yyyy");
+            Console.WriteLine(startingDate);
+
             // Show table in dataGridView
-            dataGridView_stock.DataSource = stockTracking.stockTrackingList(date1,date2,companyName);
+            dataGridView_stock.DataSource = stockTracking.stockTrackingList(startingDate.ToString("dd/MM/yyyy"),endingDate.ToString("dd/MM/yyyy"),companyName);
         }
 
         private void StockTrackingForm_Load(object sender, EventArgs e)
         {
+            dateTimePicker_startingDate.Format = DateTimePickerFormat.Custom;
+            dateTimePicker_startingDate.CustomFormat = "dd/MM/yyyy";
+
+            dateTimePicker_endingDate.Format = DateTimePickerFormat.Custom;
+            dateTimePicker_endingDate.CustomFormat = "dd/MM/yyyy";
             // customize datagridView header
             dataGridView_stock.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
             dataGridView_stock.ColumnHeadersDefaultCellStyle.Font =

@@ -66,9 +66,8 @@ namespace StockSystem.Forms
             int sim = (int) numericUpDown_sim.Value;
             string picLink = textBox_picLink.Text;
             double price = (double) numericUpDown_price.Value;
-            int stock = (int) numericUpDown_stock.Value;
 
-            if (productInfo.addProductInfo(pname, barcode, sim, picLink, price, stock))
+            if (productInfo.addProductInfo(pname, barcode, sim, picLink, price))
             {
                 dataGridView_productInfo.DataSource = productInfo.productInfoList(query);
                 MessageBox.Show(pname + " is added!", "Product Added Successfully", MessageBoxButtons.OK);
@@ -87,10 +86,8 @@ namespace StockSystem.Forms
                 int sim = (int)numericUpDown_sim.Value;
                 string picLink = textBox_picLink.Text;
                 double price = (double)numericUpDown_price.Value;
-                int stock = (int)numericUpDown_stock.Value;
 
-                
-                    if (productInfo.editProductInfo(id, pname, barcode, sim, picLink,price,stock))
+                if (productInfo.editProductInfo(id, pname, barcode, sim, picLink,price))
                     {
                         MessageBox.Show("Product is edited successfully", "Edit Product", MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
@@ -143,7 +140,6 @@ namespace StockSystem.Forms
             numericUpDown_sim.Text = dataGridView_productInfo.CurrentRow.Cells[3].Value.ToString();
             textBox_picLink.Text = dataGridView_productInfo.CurrentRow.Cells[4].Value.ToString();
             numericUpDown_price.Text = dataGridView_productInfo.CurrentRow.Cells[5].Value.ToString();
-            numericUpDown_stock.Text = dataGridView_productInfo.CurrentRow.Cells[6].Value.ToString();
         }
     }
 }

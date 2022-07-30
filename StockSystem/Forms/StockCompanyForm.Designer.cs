@@ -52,6 +52,7 @@
             this.numericUpDown_IrsaliyeNo = new System.Windows.Forms.NumericUpDown();
             this.button_selectCompany = new System.Windows.Forms.Button();
             this.dataGridView_stockCompany = new System.Windows.Forms.DataGridView();
+            this.button_addProduct = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_stockId)).BeginInit();
@@ -104,6 +105,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(91)))), ((int)(((byte)(100)))));
+            this.panel1.Controls.Add(this.button_addProduct);
             this.panel1.Controls.Add(this.button_delete);
             this.panel1.Controls.Add(this.button_edit);
             this.panel1.Controls.Add(this.button_add);
@@ -116,7 +118,7 @@
             // 
             this.button_delete.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_delete.Image = ((System.Drawing.Image)(resources.GetObject("button_delete.Image")));
-            this.button_delete.Location = new System.Drawing.Point(0, 274);
+            this.button_delete.Location = new System.Drawing.Point(0, 345);
             this.button_delete.Name = "button_delete";
             this.button_delete.Size = new System.Drawing.Size(144, 57);
             this.button_delete.TabIndex = 7;
@@ -129,7 +131,7 @@
             // 
             this.button_edit.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_edit.Image = ((System.Drawing.Image)(resources.GetObject("button_edit.Image")));
-            this.button_edit.Location = new System.Drawing.Point(0, 184);
+            this.button_edit.Location = new System.Drawing.Point(0, 257);
             this.button_edit.Name = "button_edit";
             this.button_edit.Size = new System.Drawing.Size(147, 57);
             this.button_edit.TabIndex = 6;
@@ -142,7 +144,7 @@
             // 
             this.button_add.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_add.Image = ((System.Drawing.Image)(resources.GetObject("button_add.Image")));
-            this.button_add.Location = new System.Drawing.Point(0, 94);
+            this.button_add.Location = new System.Drawing.Point(0, 169);
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(144, 57);
             this.button_add.TabIndex = 5;
@@ -153,10 +155,10 @@
             // 
             // textBox_status
             // 
-            this.textBox_status.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_status.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_status.Location = new System.Drawing.Point(785, 126);
             this.textBox_status.Name = "textBox_status";
-            this.textBox_status.Size = new System.Drawing.Size(160, 27);
+            this.textBox_status.Size = new System.Drawing.Size(160, 29);
             this.textBox_status.TabIndex = 32;
             // 
             // numericUpDown_stockId
@@ -314,6 +316,19 @@
             this.dataGridView_stockCompany.TabIndex = 45;
             this.dataGridView_stockCompany.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_stockCompany_CellClick);
             // 
+            // button_addProduct
+            // 
+            this.button_addProduct.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_addProduct.Image = ((System.Drawing.Image)(resources.GetObject("button_addProduct.Image")));
+            this.button_addProduct.Location = new System.Drawing.Point(0, 81);
+            this.button_addProduct.Name = "button_addProduct";
+            this.button_addProduct.Size = new System.Drawing.Size(144, 57);
+            this.button_addProduct.TabIndex = 8;
+            this.button_addProduct.Text = "Add Product";
+            this.button_addProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button_addProduct.UseVisualStyleBackColor = true;
+            this.button_addProduct.Click += new System.EventHandler(this.button_addProduct_Click);
+            // 
             // StockCompanyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -365,7 +380,6 @@
         private System.Windows.Forms.Button button_edit;
         private System.Windows.Forms.Button button_add;
         private System.Windows.Forms.TextBox textBox_status;
-        private System.Windows.Forms.NumericUpDown numericUpDown_stockId;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -378,5 +392,7 @@
         private System.Windows.Forms.Button button_selectCompany;
         private System.Windows.Forms.DataGridView dataGridView_stockCompany;
         public System.Windows.Forms.NumericUpDown numericUpDown_companyId;
+        public System.Windows.Forms.NumericUpDown numericUpDown_stockId;
+        private System.Windows.Forms.Button button_addProduct;
     }
 }

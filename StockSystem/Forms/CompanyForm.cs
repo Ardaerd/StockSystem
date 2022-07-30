@@ -16,9 +16,11 @@ namespace StockSystem.Forms
         private string query;
         private Form1 form1;
         private Company company = new Company();
+        private CompanyProductForm companyProductForm;
+        private int cid;
         public CompanyForm(Form1 form1)
         {
-            query = "SELECT * FROM company";
+            query = "SELECT * FROM company ORDER BY cid ASC";
             this.form1 = form1;
             InitializeComponent();
         }
@@ -61,14 +63,21 @@ namespace StockSystem.Forms
 
         private void button_add_Click(object sender, EventArgs e)
         {
-            int cid = (int) numericUpDown_Id.Value;
+            //int cid = (int) company.companyList(query).;
             string cname = textBox_comapnyName.Text;
 
             if (company.addCompany(cname))
             {
                 dataGridView_company.DataSource = company.companyList(query);
                 MessageBox.Show(cname + " is added!", "Compnay Added Successfully", MessageBoxButtons.OK);
+
+                int row = company.companyList(query).Rows.Count - 1;
+                cid = Int32.Parse(dataGridView_company.Rows[row].Cells[0].Value.ToString());
             }
+
+            companyProductForm = new CompanyProductForm(this);
+            companyProductForm.Show();
+            this.Hide();
         }
 
         private void button_edit_Click(object sender, EventArgs e)
@@ -127,6 +136,29 @@ namespace StockSystem.Forms
         {
             numericUpDown_Id.Text = dataGridView_company.CurrentRow.Cells[0].Value.ToString();
             textBox_comapnyName.Text = dataGridView_company.CurrentRow.Cells[1].Value.ToString();
+        }
+
+        public int getCid()
+        {
+            return this.cid;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cid = (int)numericUpDown_Id.Value;
+                string cname = textBox_comapnyName.Text;
+
+                companyProductForm = new CompanyProductForm(this);
+                companyProductForm.Show();
+                this.Hide();
+               
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Invalid ID");
+            }
         }
     }
 }

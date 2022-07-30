@@ -14,13 +14,11 @@ namespace StockSystem.Forms
     public partial class SelectCompanyForm : Form
     {
         private string query;
-        private CompanyProductForm companyProductForm = null;
         private StockCompanyForm stockCompanyForm = null;
         private string id;
         private Company company;
-        public SelectCompanyForm(CompanyProductForm companyProductForm, StockCompanyForm stockCompanyForm)
+        public SelectCompanyForm(StockCompanyForm stockCompanyForm)
         {
-            this.companyProductForm = companyProductForm;
             query = "SELECT * FROM company";
             company = new Company();
             InitializeComponent();
@@ -51,10 +49,6 @@ namespace StockSystem.Forms
                 stockCompanyForm.numericUpDown_companyId.Text = id;
             }
 
-            if (companyProductForm != null)
-            {
-                companyProductForm.numericUpDown_companyId.Text = id;
-            }
             this.Close();
         }
 

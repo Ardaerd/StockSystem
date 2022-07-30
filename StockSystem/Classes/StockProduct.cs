@@ -14,23 +14,26 @@ namespace StockSystem.Classes
         private OracleDb db = new OracleDb();
 
         // Create a function to add product to the stock in the stockProduct table
-        public bool addStockProduct(int pid,int quantity,double price,double total)
+        public bool addStockProduct(int sid,int pid,int quantity,double price,double total)
         {
-            string query = "INSERT INTO stockProduct(pid,quantity,price,total) VALUES(:pid,:quantity,:price,:total)";
+            string query = "INSERT INTO stockProduct(sid,pid,quantity,price,total) VALUES(:sid,:pid,:quantity,:price,:total)";
 
-            OracleParameter[] param = new OracleParameter[4];
+            OracleParameter[] param = new OracleParameter[5];
 
-            param[0] = new OracleParameter("pid", OracleDbType.Int32);
-            param[0].Value = pid;
+            param[0] = new OracleParameter("sid", OracleDbType.Int32);
+            param[0].Value = sid;
 
-            param[1] = new OracleParameter("quantity", OracleDbType.Int32);
-            param[1].Value = quantity;
+            param[1] = new OracleParameter("pid", OracleDbType.Int32);
+            param[1].Value = pid;
 
-            param[2] = new OracleParameter("price", OracleDbType.Double);
-            param[2].Value = price;
+            param[2] = new OracleParameter("quantity", OracleDbType.Int32);
+            param[2].Value = quantity;
 
-            param[3] = new OracleParameter("total", OracleDbType.Double);
-            param[3].Value = total;
+            param[3] = new OracleParameter("price", OracleDbType.Double);
+            param[3].Value = price;
+
+            param[4] = new OracleParameter("total", OracleDbType.Double);
+            param[4].Value = total;
 
             if (db.setData(query, param) == 1)
             {

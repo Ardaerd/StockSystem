@@ -60,15 +60,23 @@ namespace StockSystem.Forms
 
         private void button_add_Click(object sender, EventArgs e)
         {
-
-            int id = (int)numericUpDown_Id.Value;
-            double price = (double)numericUpDown_price.Value;
-            DateTime date = dateTimePicker_date.Value;
-
-            if (productPrice.addProductInfo(id, date, price))
+            try
             {
-                dataGridView_productPrice.DataSource = productPrice.productPriceList();
-                MessageBox.Show("Product price is added Successfully!", "Product price Added Successfully", MessageBoxButtons.OK);
+                int id = (int)numericUpDown_Id.Value;
+                double price = (double)numericUpDown_price.Value;
+                DateTime date = dateTimePicker_date.Value.Date;
+
+                Console.WriteLine(date.ToString());
+
+                if (productPrice.addProductInfo(id, date, price))
+                {
+                    dataGridView_productPrice.DataSource = productPrice.productPriceList();
+                    MessageBox.Show("Product price is added Successfully!", "Product price Added Successfully", MessageBoxButtons.OK);
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Invalid ID");
             }
         }
 
@@ -78,7 +86,10 @@ namespace StockSystem.Forms
             {
                 int id = (int)numericUpDown_Id.Value;
                 double price = (double)numericUpDown_price.Value;
-                DateTime date = dateTimePicker_date.Value;
+                DateTime date = dateTimePicker_date.Value.Date;
+
+                Console.WriteLine(date.ToString());
+
 
                 if (productPrice.editProductPrice(id, date, price))
                 {

@@ -16,14 +16,16 @@ namespace StockSystem.Forms
         private SelectProductForm selectProductForm;
         private SelectCompanyForm selectCompanyForm;
         private CompanyProduct companyProduct;
-        private Form1 form1;
+        private CompanyForm companyForm;
         private string query;
-        public CompanyProductForm(Form1 form1)
+        private int cid;
+        public CompanyProductForm(CompanyForm companyForm)
         {
-            query = "SELECT * FROM companyProduct_view";
-            this.form1 = form1;
-            companyProduct = new CompanyProduct();
             InitializeComponent();
+            query = "SELECT * FROM companyProduct_view";
+            this.companyForm = companyForm;
+            companyProduct = new CompanyProduct();
+            cid = this.companyForm.getCid();
         }
 
         private void button_selectProduct_Click(object sender, EventArgs e)
@@ -35,7 +37,7 @@ namespace StockSystem.Forms
         private void label2_Click(object sender, EventArgs e)
         {
             this.Close();
-            form1.Show();
+            companyForm.Show();
         }
 
         private void label2_MouseEnter(object sender, EventArgs e)
@@ -48,17 +50,10 @@ namespace StockSystem.Forms
             label2.BackColor = Color.FromArgb(57, 91, 100);
         }
 
-        private void button_selectCompany_Click(object sender, EventArgs e)
-        {
-            selectCompanyForm = new SelectCompanyForm(this,null);
-            selectCompanyForm.Show();
-        }
-
         private void button_add_Click(object sender, EventArgs e)
         {
             int pid = (int)numericUpDown_Id.Value;
-            int cid = (int)numericUpDown_companyId.Value;
-            
+
 
             if (companyProduct.addComapnyProduct(pid,cid))
             {
@@ -87,14 +82,13 @@ namespace StockSystem.Forms
         private void dataGridView_companyProduct_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             numericUpDown_Id.Text = dataGridView_companyProduct.CurrentRow.Cells[0].Value.ToString();
-            numericUpDown_companyId.Text = dataGridView_companyProduct.CurrentRow.Cells[2].Value.ToString();
+            cid = Int32.Parse(dataGridView_companyProduct.CurrentRow.Cells[2].Value.ToString());
         }
 
         private void button_delete_Click(object sender, EventArgs e)
         {
             try
             {
-                int cid = (int)numericUpDown_companyId.Value;
                 int pid = (int)numericUpDown_Id.Value;
 
                 if (companyProduct.deleteCompany(pid,cid))

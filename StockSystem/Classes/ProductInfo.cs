@@ -15,10 +15,44 @@ namespace StockSystem.Classes
         private OracleDb db = new OracleDb();
 
         // Create a function to add product to the productInfo table
-        public bool addProductInfo(string productName, string barcode, int sim, string pic, double price, int stock)
+        public bool addProductInfo(string productName, string barcode, int sim, string pic, double price)
         {
             string query =
-                "INSERT INTO productInfo(pname,barcode,sim,pic,price,stock) VALUES(:name,:barcode,:sim,:pic,:price,:stock)";
+                "INSERT INTO productInfo(pname,barcode,sim,pic,price) VALUES(:name,:barcode,:sim,:pic,:price)";
+
+            OracleParameter[] param = new OracleParameter[5];
+
+            param[0] = new OracleParameter("name", OracleDbType.Varchar2);
+            param[0].Value = productName;
+
+            param[1] = new OracleParameter("barcode", OracleDbType.Varchar2);
+            param[1].Value = barcode;
+
+            param[2] = new OracleParameter("sim", OracleDbType.Int32);
+            param[2].Value = sim;
+
+            param[3] = new OracleParameter("pic", OracleDbType.Varchar2);
+            param[3].Value = pic;
+
+            param[4] = new OracleParameter("price", OracleDbType.Double);
+            param[4].Value = price;
+
+
+            if (db.setData(query, param) == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // Create a function to edit product in the productInfo table
+        public bool editProductInfo(int id, string productName, string barcode, int sim, string pic, double price)
+        {
+            string query =
+                "UPDATE productInfo SET pname = :name, barcode = :barcode, sim = :sim, pic = :pic, price = :price WHERE pid = :id";
 
             OracleParameter[] param = new OracleParameter[6];
 
@@ -37,47 +71,8 @@ namespace StockSystem.Classes
             param[4] = new OracleParameter("price", OracleDbType.Double);
             param[4].Value = price;
 
-            param[5] = new OracleParameter("stock", OracleDbType.Int32);
-            param[5].Value = stock;
-
-            if (db.setData(query, param) == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        // Create a function to edit product in the productInfo table
-        public bool editProductInfo(int id, string productName, string barcode, int sim, string pic, double price, int stock)
-        {
-            string query =
-                "UPDATE productInfo SET pname = :name, barcode = :barcode, sim = :sim, pic = :pic, price = :price, stock = :stock WHERE pid = :id";
-
-            OracleParameter[] param = new OracleParameter[7];
-
-            param[0] = new OracleParameter("name", OracleDbType.Varchar2);
-            param[0].Value = productName;
-
-            param[1] = new OracleParameter("barcode", OracleDbType.Varchar2);
-            param[1].Value = barcode;
-
-            param[2] = new OracleParameter("sim", OracleDbType.Int32);
-            param[2].Value = sim;
-
-            param[3] = new OracleParameter("pic", OracleDbType.Varchar2);
-            param[3].Value = pic;
-
-            param[4] = new OracleParameter("price", OracleDbType.Double);
-            param[4].Value = price;
-
-            param[5] = new OracleParameter("stock", OracleDbType.Int32);
-            param[5].Value = stock;
-
-            param[6] = new OracleParameter("id", OracleDbType.Int32);
-            param[6].Value = id;
+            param[5] = new OracleParameter("id", OracleDbType.Int32);
+            param[5].Value = id;
 
             if (db.setData(query, param) == 1)
             {

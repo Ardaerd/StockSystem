@@ -63,24 +63,6 @@ namespace StockSystem
             this.Hide();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void button_companyProduct_Click(object sender, EventArgs e)
-        {
-            companyProductForm = new CompanyProductForm(this);
-            companyProductForm.Show();
-            this.Hide();
-        }
-
-        private void button_stockProduct_Click(object sender, EventArgs e)
-        {
-            stockProductForm = new StockProductForm(this);
-            stockProductForm.Show();
-            this.Hide();
-        }
-
         private void button_stockCompany_Click(object sender, EventArgs e)
         {
             stockCompanyForm = new StockCompanyForm(this);

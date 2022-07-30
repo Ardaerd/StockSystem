@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompanyProductForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -43,14 +43,10 @@
             this.button_selectProduct = new System.Windows.Forms.Button();
             this.numericUpDown_Id = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
-            this.button_selectCompany = new System.Windows.Forms.Button();
-            this.numericUpDown_companyId = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
             this.dataGridView_companyProduct = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Id)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_companyId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_companyProduct)).BeginInit();
             this.SuspendLayout();
             // 
@@ -176,75 +172,42 @@
             this.label3.TabIndex = 38;
             this.label3.Text = "Product_ID :";
             // 
-            // button_selectCompany
-            // 
-            this.button_selectCompany.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_selectCompany.Location = new System.Drawing.Point(679, 160);
-            this.button_selectCompany.Name = "button_selectCompany";
-            this.button_selectCompany.Size = new System.Drawing.Size(146, 33);
-            this.button_selectCompany.TabIndex = 43;
-            this.button_selectCompany.Text = "Select Company";
-            this.button_selectCompany.UseVisualStyleBackColor = true;
-            this.button_selectCompany.Click += new System.EventHandler(this.button_selectCompany_Click);
-            // 
-            // numericUpDown_companyId
-            // 
-            this.numericUpDown_companyId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown_companyId.Location = new System.Drawing.Point(535, 160);
-            this.numericUpDown_companyId.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numericUpDown_companyId.Name = "numericUpDown_companyId";
-            this.numericUpDown_companyId.Size = new System.Drawing.Size(114, 27);
-            this.numericUpDown_companyId.TabIndex = 42;
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(359, 160);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(141, 23);
-            this.label4.TabIndex = 41;
-            this.label4.Text = "Company_ID :";
-            // 
             // dataGridView_companyProduct
             // 
             this.dataGridView_companyProduct.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dataGridView_companyProduct.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_companyProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_companyProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView_companyProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_companyProduct.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView_companyProduct.Location = new System.Drawing.Point(159, 217);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_companyProduct.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView_companyProduct.Location = new System.Drawing.Point(159, 171);
             this.dataGridView_companyProduct.Name = "dataGridView_companyProduct";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_companyProduct.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_companyProduct.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView_companyProduct.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView_companyProduct.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView_companyProduct.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView_companyProduct.RowTemplate.Height = 24;
-            this.dataGridView_companyProduct.Size = new System.Drawing.Size(851, 283);
+            this.dataGridView_companyProduct.Size = new System.Drawing.Size(851, 329);
             this.dataGridView_companyProduct.TabIndex = 44;
             this.dataGridView_companyProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_companyProduct_CellClick);
             // 
@@ -255,9 +218,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(1022, 512);
             this.Controls.Add(this.dataGridView_companyProduct);
-            this.Controls.Add(this.button_selectCompany);
-            this.Controls.Add(this.numericUpDown_companyId);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.button_selectProduct);
             this.Controls.Add(this.numericUpDown_Id);
             this.Controls.Add(this.label3);
@@ -273,7 +233,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Id)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_companyId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_companyProduct)).EndInit();
             this.ResumeLayout(false);
 
@@ -291,9 +250,6 @@
         private System.Windows.Forms.Button button_selectProduct;
         public System.Windows.Forms.NumericUpDown numericUpDown_Id;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button_selectCompany;
-        public System.Windows.Forms.NumericUpDown numericUpDown_companyId;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dataGridView_companyProduct;
     }
 }

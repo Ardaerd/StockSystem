@@ -46,11 +46,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.textBox_pname = new System.Windows.Forms.TextBox();
             this.numericUpDown_Id = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_price = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown_stock = new System.Windows.Forms.NumericUpDown();
             this.textBox_barcode = new System.Windows.Forms.TextBox();
             this.textBox_picLink = new System.Windows.Forms.TextBox();
             this.numericUpDown_sim = new System.Windows.Forms.NumericUpDown();
@@ -59,7 +57,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Id)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_price)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_stock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_sim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_productInfo)).BeginInit();
             this.SuspendLayout();
@@ -157,7 +154,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(214, 98);
+            this.label3.Location = new System.Drawing.Point(214, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 23);
             this.label3.TabIndex = 5;
@@ -175,7 +172,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(169, 194);
+            this.label5.Location = new System.Drawing.Point(169, 202);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(90, 23);
             this.label5.TabIndex = 7;
@@ -184,7 +181,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(200, 248);
+            this.label6.Location = new System.Drawing.Point(200, 264);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 23);
             this.label6.TabIndex = 8;
@@ -193,7 +190,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(144, 307);
+            this.label7.Location = new System.Drawing.Point(144, 331);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(125, 23);
             this.label7.TabIndex = 9;
@@ -202,20 +199,11 @@
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(195, 358);
+            this.label8.Location = new System.Drawing.Point(195, 390);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(64, 23);
             this.label8.TabIndex = 10;
             this.label8.Text = "Price :";
-            // 
-            // label9
-            // 
-            this.label9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(190, 408);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 23);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "Stock :";
             // 
             // textBox_pname
             // 
@@ -228,7 +216,7 @@
             // numericUpDown_Id
             // 
             this.numericUpDown_Id.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown_Id.Location = new System.Drawing.Point(294, 98);
+            this.numericUpDown_Id.Location = new System.Drawing.Point(294, 90);
             this.numericUpDown_Id.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -242,7 +230,7 @@
             // 
             this.numericUpDown_price.DecimalPlaces = 2;
             this.numericUpDown_price.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown_price.Location = new System.Drawing.Point(294, 362);
+            this.numericUpDown_price.Location = new System.Drawing.Point(294, 391);
             this.numericUpDown_price.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -252,23 +240,10 @@
             this.numericUpDown_price.Size = new System.Drawing.Size(114, 27);
             this.numericUpDown_price.TabIndex = 14;
             // 
-            // numericUpDown_stock
-            // 
-            this.numericUpDown_stock.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown_stock.Location = new System.Drawing.Point(294, 409);
-            this.numericUpDown_stock.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numericUpDown_stock.Name = "numericUpDown_stock";
-            this.numericUpDown_stock.Size = new System.Drawing.Size(114, 27);
-            this.numericUpDown_stock.TabIndex = 15;
-            // 
             // textBox_barcode
             // 
             this.textBox_barcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_barcode.Location = new System.Drawing.Point(294, 195);
+            this.textBox_barcode.Location = new System.Drawing.Point(294, 202);
             this.textBox_barcode.Name = "textBox_barcode";
             this.textBox_barcode.Size = new System.Drawing.Size(160, 27);
             this.textBox_barcode.TabIndex = 16;
@@ -276,7 +251,7 @@
             // textBox_picLink
             // 
             this.textBox_picLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_picLink.Location = new System.Drawing.Point(294, 307);
+            this.textBox_picLink.Location = new System.Drawing.Point(294, 331);
             this.textBox_picLink.Name = "textBox_picLink";
             this.textBox_picLink.Size = new System.Drawing.Size(160, 27);
             this.textBox_picLink.TabIndex = 18;
@@ -284,7 +259,7 @@
             // numericUpDown_sim
             // 
             this.numericUpDown_sim.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown_sim.Location = new System.Drawing.Point(294, 249);
+            this.numericUpDown_sim.Location = new System.Drawing.Point(294, 260);
             this.numericUpDown_sim.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -338,11 +313,9 @@
             this.Controls.Add(this.numericUpDown_sim);
             this.Controls.Add(this.textBox_picLink);
             this.Controls.Add(this.textBox_barcode);
-            this.Controls.Add(this.numericUpDown_stock);
             this.Controls.Add(this.numericUpDown_price);
             this.Controls.Add(this.numericUpDown_Id);
             this.Controls.Add(this.textBox_pname);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -362,7 +335,6 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Id)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_price)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_stock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_sim)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_productInfo)).EndInit();
             this.ResumeLayout(false);
@@ -385,11 +357,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox_pname;
         private System.Windows.Forms.NumericUpDown numericUpDown_Id;
         private System.Windows.Forms.NumericUpDown numericUpDown_price;
-        private System.Windows.Forms.NumericUpDown numericUpDown_stock;
         private System.Windows.Forms.TextBox textBox_barcode;
         private System.Windows.Forms.TextBox textBox_picLink;
         private System.Windows.Forms.NumericUpDown numericUpDown_sim;

@@ -24,32 +24,42 @@ namespace StockSystem.Classes
                 query = "SELECT * FROM stockTracking_view " +
                         "WHERE stockEntryDate BETWEEN TO_DATE('"+ starDate + "','DD/MM/YYYY') AND TO_DATE('" + endDate + "','DD/MM/YYYY')";
 
-                /*
-                query = "SELECT * FROM stockTracking_view " +
-                        "WHERE stockEntryDate BETWEEN TO_DATE(:startDate,'DD/MM/YYYY') AND TO_DATE(:endDate,'DD/MM/YYYY')";
-
-                param = new OracleParameter[2];
-
-                param[0] = new OracleParameter("startDate", OracleDbType.Date);
-                param[0].Value = starDate;
-
-                param[1] = new OracleParameter("endDate", OracleDbType.Date);
-                param[1].Value = endDate;*/
 
                 table = db.getData(query, null);
+
+                /*query = "SELECT * FROM stockTracking_view " +
+                        "WHERE stockEntryDate BETWEEN TO_DATE(:startDate,'DD/MM/YYYY') AND SYSDATE";
+
+                param = new OracleParameter[1];
+
+                param[0] = new OracleParameter("startDate", OracleDbType.Date);
+                param[0].Value = starDate.Date;*/
+
+
+
             }
 
             else
             {
                 query = "SELECT * FROM stockTracking_view " +
-                        "WHERE stockEntryDate BETWEEN TO_DATE('" + starDate + "','DD/MM/YYYY') AND TO_DATE('" + endDate + "','DD/MM/YYYY') AND cname LIKE '%"+ cname + "%'";
-
-                /*param = new OracleParameter[1];
-
-                param[0] = new OracleParameter("cname", OracleDbType.Varchar2);
-                param[0].Value = cname;*/
+                        "WHERE stockEntryDate BETWEEN TO_DATE('" + starDate + "','DD/MM/YYYY') AND TO_DATE('" + endDate + "','DD/MM/YYYY') AND cname LIKE '% "+ cname + "%'";
 
                 table = db.getData(query, null);
+
+                /*query = "SELECT * FROM stockTracking_view " +
+                        "WHERE stockEntryDate BETWEEN TO_DATE(:startDate,'DD/MM/YYYY') AND TO_DATE(:endDate,'DD/MM/YYYY') AND cname LIKE '%:cname%'";
+
+                param = new OracleParameter[3];
+
+                param[0] = new OracleParameter("startDate", OracleDbType.Date);
+                param[0].Value = starDate;
+
+                param[1] = new OracleParameter("endDate", OracleDbType.Date);
+                param[1].Value = endDate;
+
+                param[2] = new OracleParameter("cname", OracleDbType.Varchar2);
+                param[2].Value = cname;*/
+
             }
 
             return table;
