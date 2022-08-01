@@ -19,12 +19,12 @@ namespace StockSystem.Forms
         private StockProductForm stockProductForm;
         private string query = "SELECT * FROM stockCompany_view ORDER BY sid ASC";
         private int sid;
+        private int cid;
         public StockCompanyForm(Form1 form1)
         {
             InitializeComponent();
             this.form1 = form1;
             stockCompany = new StockCompany();
-            stockProductForm = new StockProductForm(this);
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -80,6 +80,12 @@ namespace StockSystem.Forms
                 DateTime irsaliyeDate = dateTimePicker_IrsaliyeDate.Value.Date;
                 int irsaliyeNo = (int)numericUpDown_IrsaliyeNo.Value;
 
+                string date = irsaliyeDate.ToString("dd/MM/yyyy");
+
+                Console.WriteLine(date);
+
+                irsaliyeDate = DateTime.Parse(date);
+
                 if (cid == 0)
                 {
                     MessageBox.Show("You have to fill cid", "Fill CID", MessageBoxButtons.OK,
@@ -95,6 +101,7 @@ namespace StockSystem.Forms
 
                         int row = stockCompany.stockCompanyList(query).Rows.Count - 1;
                         this.sid = Int32.Parse(dataGridView_stockCompany.Rows[row].Cells[0].Value.ToString());
+                        this.cid = Int32.Parse(dataGridView_stockCompany.Rows[row].Cells[1].Value.ToString());
                     }
                 }
 
@@ -174,16 +181,14 @@ namespace StockSystem.Forms
 
         }
 
-        public int getSid()
-        {
-            return sid;
-        }
-
         private void button_addProduct_Click(object sender, EventArgs e)
         {
+            stockProductForm = new StockProductForm(this);
+
             try
             { 
                 sid = (int)numericUpDown_stockId.Value;
+                cid = (int)numericUpDown_companyId.Value;
 
                 stockProductForm.Show();
                 this.Hide();
@@ -193,6 +198,16 @@ namespace StockSystem.Forms
             {
                 MessageBox.Show(exception.Message, "Invalid ID");
             }
+        }
+
+        public int getSid()
+        {
+            return sid;
+        }
+
+        public int getCid()
+        {
+            return cid;
         }
     }
 }

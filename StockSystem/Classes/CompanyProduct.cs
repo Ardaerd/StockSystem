@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Oracle.ManagedDataAccess.Client;
 using StockSystem.Database;
+using StockSystem.Forms;
 
 namespace StockSystem.Classes
 {
@@ -65,6 +66,22 @@ namespace StockSystem.Classes
         {
             DataTable table = new DataTable();
             table = db.getData(query, null);
+
+            return table;
+        }
+
+        // Create function to return a table of companyProduct which provides the required conditions
+        public DataTable companyProductListConditions(int cid)
+        {
+            string query = "SELECT * FROM selectedCompanyProduct_view WHERE cid = :cid";
+
+            OracleParameter[] param = new OracleParameter[1];
+
+            param[0] = new OracleParameter("cid", OracleDbType.Int32);
+            param[0].Value = cid;
+
+            DataTable table = new DataTable();
+            table = db.getData(query, param);
 
             return table;
         }

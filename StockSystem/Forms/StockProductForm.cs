@@ -18,7 +18,7 @@ namespace StockSystem.Forms
         private Form1 form1;
         private StockProduct stockProduct;
         private double price;
-        private string query = "SELECT * FROM stockProduct";
+        private string query = "SELECT * FROM stockProduct_view ORDER BY sid ASC";
 
         public StockProductForm(StockCompanyForm stockCompanyForm)
         {
@@ -153,6 +153,11 @@ namespace StockSystem.Forms
             numericUpDown_ProductId.Text = dataGridView_stockProduct.CurrentRow.Cells[1].Value.ToString();
             numericUpDownQuantity.Text = dataGridView_stockProduct.CurrentRow.Cells[2].Value.ToString();
             price = (double)dataGridView_stockProduct.CurrentRow.Cells[3].Value;
+        }
+
+        public int GetCid()
+        {
+            return stockCompanyForm.getCid();
         }
     }
 }

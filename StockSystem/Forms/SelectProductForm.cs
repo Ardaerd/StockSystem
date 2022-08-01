@@ -14,6 +14,7 @@ namespace StockSystem.Forms
     public partial class SelectProductForm : Form
     {
         private ProductInfo productInfo;
+        private CompanyProduct companyProduct;
         private string query;
         private ProductPriceForm productPriceForm = null;
         private CompanyProductForm companyProductForm = null;
@@ -28,12 +29,23 @@ namespace StockSystem.Forms
             this.companyProductForm = companyProductForm;
             this.stockProductForm = stockProductForm;
             this.productPriceForm = productPriceForm;
+            companyProduct = new CompanyProduct();
         }
 
         private void SelectProductForm_Load(object sender, EventArgs e)
         {
-            // Show table in dataGridView
-            dataGridView_selectProduct.DataSource = productInfo.productInfoList(query);
+            if (stockProductForm != null)
+            {
+                // Show table in dataGridView
+                dataGridView_selectProduct.DataSource = companyProduct.companyProductListConditions(stockProductForm.GetCid());
+            }
+
+            if (companyProductForm != null || productPriceForm != null)
+            {
+                // Show table in dataGridView
+                dataGridView_selectProduct.DataSource = productInfo.productInfoList(query);
+            }
+            
 
             // customize datagridView header
             dataGridView_selectProduct.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;

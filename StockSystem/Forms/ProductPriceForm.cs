@@ -66,7 +66,7 @@ namespace StockSystem.Forms
                 double price = (double)numericUpDown_price.Value;
                 DateTime date = dateTimePicker_date.Value.Date;
 
-                Console.WriteLine(date.ToString());
+                date = DateTime.Parse(date.ToString("dd/MM/yyyy"));
 
                 if (productPrice.addProductInfo(id, date, price))
                 {

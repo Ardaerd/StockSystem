@@ -10,7 +10,10 @@ DROP SEQUENCE pid_seq;
 
 DROP VIEW companyProduct_view;
 DROP VIEW stockTracking_view;
+DROP VIEW selectedCompanyProduct_view;
 
+DROP TRIGGER stockProduct_view;
+DROP TRIGGER stockCompany_view;
 DROP TRIGGER stockEntryDate_trigger_stockCompany;
 DROP TRIGGER updateStock_stockProduct_trigger;
 DROP TRIGGER updatePrice_productPrice_trigger;
@@ -40,6 +43,7 @@ SELECT * FROM companyProduct;
 SELECT * FROM stockCompany;
 SELECT * FROM stockProduct;
 SELECT * FROM stockTracking_view;
+SELECT * FROM selectedCompanyProduct_view;
 
 SELECT * FROM stockTracking_view WHERE stockEntryDate BETWEEN TO_DATE('23/7/2022', 'DD/MM/YYYY') AND TO_DATE('26/7/2022', 'DD/MM/YYYY');
 
@@ -54,6 +58,21 @@ CREATE VIEW stockTracking_view AS
     SELECT C.cname,P.pname,P.price,SP.quantity,P.stock,SC.status,SC.stockEntryDate,SC.irsaliyeDate,SC.irsaliyeNo
     FROM productInfo P, company C, stockCompany SC, stockProduct SP, companyProduct CP
     WHERE C.cid = SC.cid AND P.pid = SP.pid AND P.pid = CP.pid AND C.cid = CP.cid;
+    
+CREATE VIEW stockCompany_view AS
+    SELECT SC.sid,SC.cid,C.cname,SC.tip,SC.status,SC.stockEntryDate,SC.irsaliyeDate,SC.irsaliyeNo,SC.updateDateTime
+    FROM stockCompany SC
+    INNER JOIN company C ON SC.cid = C.cid;
+    
+CREATE VIEW stockProduct_view AS
+    SELECT SP.sid,SP.pid,P.pname,SP.price,SP.quantity,SP.total,SP.insertDateTime,SP.updateDateTime
+    FROM stockProduct SP
+    INNER JOIN productInfo P ON SP.pid = P.pid;
+    
+CREATE VIEW selectedCompanyProduct_view AS
+    SELECT P.pid,P.pname,P.price,P.stock,CP.cid
+    FROM companyProduct CP
+    INNER JOIN productInfo P ON CP.pid = P.pid;
 
 CREATE TABLE productInfo(
     pid NUMBER(38) Primary Key,
