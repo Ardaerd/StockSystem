@@ -98,5 +98,21 @@ namespace StockSystem.Classes
 
             return table;
         }
+
+        // Create function to return a table of validityDate in productPriceTable
+        public DataTable priceValidityDateList(int pid)
+        {
+            string query = "SELECT pid,priceValidityDate,price FROM productPrice WHERE pid = :pid";
+
+            OracleParameter[] param = new OracleParameter[1];
+
+            param[0] = new OracleParameter("pid", OracleDbType.Int32);
+            param[0].Value = pid;
+
+            DataTable table = new DataTable();
+            table = db.getData(query, param);
+
+            return table;
+        }
     }
 }

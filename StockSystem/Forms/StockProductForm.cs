@@ -23,7 +23,6 @@ namespace StockSystem.Forms
         public StockProductForm(StockCompanyForm stockCompanyForm)
         {
             InitializeComponent();
-            this.form1 = form1;
             stockProduct = new StockProduct();
             this.stockCompanyForm = stockCompanyForm;
         }

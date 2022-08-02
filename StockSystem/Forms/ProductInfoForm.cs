@@ -15,7 +15,17 @@ namespace StockSystem.Forms
     {
         private Form1 form1;
         private ProductInfo productInfo = new ProductInfo();
-        private string query = "SELECT * FROM productInfo";
+        private string query = "SELECT P.pid,P.pname,P.barcode,P.sim,P.pic,P.price AS FirstPrice," +
+                               "(SELECT PP.price " +
+                               "FROM productPrice PP " +
+                               "WHERE PP.pid = P.pid AND " +
+                               "PP.priceValidityDate = (SELECT MAX(PP_2.priceValidityDate) " +
+                                                       "FROM productPrice PP_2 where PP_2.priceValidityDate <= sysdate AND PP.pid = PP_2.pid)) AS ValidPrice, P.stock,P.insertDateTime,P.updateDateTime FROM productInfo P, productPrice PP " +
+                                                       "WHERE P.pid = PP.pid AND " +
+                                                       "PP.priceValidityDate = (SELECT MAX (PP_2.priceValidityDate) " +
+                                                                               "FROM productPrice PP_2 " +
+                                                                               "WHERE PP_2.priceValidityDate <= sysdate AND PP.pid = PP_2.pid)";
+        private ProductPrice productPrice;
 
         public ProductInfoForm(Form1 form1)
         {
@@ -42,7 +52,7 @@ namespace StockSystem.Forms
         private void ProductInfoForm_Load(object sender, EventArgs e)
         {
             form1.Hide();
-
+           
             // Show table in dataGridView
             dataGridView_productInfo.DataSource = productInfo.productInfoList(query);
 

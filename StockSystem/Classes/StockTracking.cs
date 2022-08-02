@@ -21,7 +21,7 @@ namespace StockSystem.Classes
 
             if (cname.Trim().Equals(""))
             {
-                query = "SELECT * FROM stockTracking_view " +
+                query = "SELECT * FROM stockCompany " +
                         "WHERE stockEntryDate BETWEEN TO_DATE('"+ starDate + "','DD/MM/YYYY') AND TO_DATE('" + endDate + "','DD/MM/YYYY')";
 
 

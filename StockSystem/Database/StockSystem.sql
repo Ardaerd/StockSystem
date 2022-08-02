@@ -45,6 +45,22 @@ SELECT * FROM stockProduct;
 SELECT * FROM stockTracking_view;
 SELECT * FROM selectedCompanyProduct_view;
 
+SELECT P.pid,P.pname,P.barcode,P.sim,P.pic,P.price AS FirstPrice,
+(SELECT PP.price
+FROM productPrice PP
+WHERE PP.pid = P.pid AND PP.priceValidityDate = (SELECT MAX (PP_2.priceValidityDate)
+                                                FROM productPrice PP_2 
+                                                where PP_2.priceValidityDate <= sysdate AND PP.pid = PP_2.pid)) 
+                                                AS ValidPrice,P.stock,P.insertDateTime,P.updateDateTime
+FROM productInfo P, productPrice PP
+WHERE P.pid = PP.pid AND PP.priceValidityDate = (SELECT MAX (PP_2.priceValidityDate)
+                                                FROM productPrice PP_2 
+                                                where PP_2.priceValidityDate <= sysdate AND PP.pid = PP_2.pid);
+
+SELECT P.pid,P.pname,P.barcode,P.sim,P.pic,P.price AS FirstPrice, PP.price AS ValidPrice,P.stock,P.insertDateTime,P.updateDateTime
+FROM productInfo P, productPrice PP
+WHERE P.pid = PP.pid;
+
 SELECT * FROM stockTracking_view WHERE stockEntryDate BETWEEN TO_DATE('23/7/2022', 'DD/MM/YYYY') AND TO_DATE('26/7/2022', 'DD/MM/YYYY');
 
 
@@ -174,6 +190,15 @@ FOR EACH ROW
 BEGIN
     UPDATE productInfo SET price = :NEW.price WHERE pid = :NEW.pid;
 END updatePrice_productPrice_trigger;
+
+-- for adidng price in productInfo
+CREATE TRIGGER addProductPrice_productInfo_trigger
+AFTER Insert 
+ON productInfo 
+FOR EACH ROW
+BEGIN
+    INSERT INTO productPrice(pid,priceValidityDate,price) VALUES(:NEW.pid,SYSDATE,:NEW.price);
+END  addProductPrice_productInfo_trigger;
 
 -- for updating stock in productInfo when stockProduct is inserted
 CREATE TRIGGER updateStock_stockProduct_trigger

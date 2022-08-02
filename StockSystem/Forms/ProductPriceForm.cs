@@ -16,6 +16,8 @@ namespace StockSystem.Forms
         private Form1 form1;
         private ProductPrice productPrice;
         private SelectProductForm selectProductForm;
+        private int pid;
+        private double validPrice;
         public ProductPriceForm(Form1 form1)
         {
             this.form1 = form1;
@@ -42,6 +44,9 @@ namespace StockSystem.Forms
         private void ProductPriceForm_Load(object sender, EventArgs e)
         {
             form1.Hide();
+
+            dateTimePicker_date.Format = DateTimePickerFormat.Custom;
+            dateTimePicker_date.CustomFormat = "dd/MM/yyyy";
 
             // Show table in dataGridView
             dataGridView_productPrice.DataSource = productPrice.productPriceList();
@@ -72,6 +77,8 @@ namespace StockSystem.Forms
                 {
                     dataGridView_productPrice.DataSource = productPrice.productPriceList();
                     MessageBox.Show("Product price is added Successfully!", "Product price Added Successfully", MessageBoxButtons.OK);
+
+                    pid = id;
                 }
             }
             catch (Exception exception)

@@ -296,10 +296,10 @@
         private System.Windows.Forms.Button button_selectProduct;
         public System.Windows.Forms.NumericUpDown numericUpDown_ProductId;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView_stockProduct;
         public System.Windows.Forms.NumericUpDown numericUpDown_StockId;
         private System.Windows.Forms.Label label_StockId;
         public System.Windows.Forms.NumericUpDown numericUpDownQuantity;
         private System.Windows.Forms.Label label_quantity;
+        public System.Windows.Forms.DataGridView dataGridView_stockProduct;
     }
 }

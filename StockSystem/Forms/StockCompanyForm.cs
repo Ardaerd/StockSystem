@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,10 @@ namespace StockSystem.Forms
         private Form1 form1;
         private SelectCompanyForm selectCompanyForm;
         private StockCompany stockCompany;
+        private StockProduct stockProduct;
         private StockProductForm stockProductForm;
         private string query = "SELECT * FROM stockCompany_view ORDER BY sid ASC";
+        private string query_2 = "SELECT * FROM stockProduct_view ORDER BY sid ASC";
         private int sid;
         private int cid;
         public StockCompanyForm(Form1 form1)
@@ -25,6 +28,8 @@ namespace StockSystem.Forms
             InitializeComponent();
             this.form1 = form1;
             stockCompany = new StockCompany();
+            stockProductForm = new StockProductForm(this);
+            stockProduct = new StockProduct();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -56,7 +61,7 @@ namespace StockSystem.Forms
 
 
             // Show table in dataGridView
-            dataGridView_stockCompany.DataSource = stockCompany.stockCompanyList(query);
+            dataGridView_stockCompany.DataSource = stockProduct.stockProductList(query_2);
 
             // customize datagridView header
             dataGridView_stockCompany.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
@@ -77,14 +82,11 @@ namespace StockSystem.Forms
                 int cid = (int)numericUpDown_companyId.Value;
                 int tip = (int)numericUpDown_tip.Value;
                 string status = textBox_status.Text;
-                DateTime irsaliyeDate = dateTimePicker_IrsaliyeDate.Value.Date;
+                String irsaliyeDate = dateTimePicker_IrsaliyeDate.Value.Date.ToString("dd/MM/yyyy");
                 int irsaliyeNo = (int)numericUpDown_IrsaliyeNo.Value;
 
-                string date = irsaliyeDate.ToString("dd/MM/yyyy");
-
-                Console.WriteLine(date);
-
-                irsaliyeDate = DateTime.Parse(date);
+                DateTime date_2 = DateTime.ParseExact(irsaliyeDate, @"d/M/yyyy",
+                    System.Globalization.CultureInfo.InvariantCulture);
 
                 if (cid == 0)
                 {
@@ -94,9 +96,9 @@ namespace StockSystem.Forms
 
                 else
                 {
-                    if (stockCompany.addStockCompany(cid, tip, status, irsaliyeDate, irsaliyeNo))
+
+                    if (stockCompany.addStockCompany(cid, tip, status, date_2, irsaliyeNo))
                     {
-                        dataGridView_stockCompany.DataSource = stockCompany.stockCompanyList(query);
                         MessageBox.Show("Company is added to the Stock Successfully!", "Company Added Successfully", MessageBoxButtons.OK);
 
                         int row = stockCompany.stockCompanyList(query).Rows.Count - 1;
@@ -183,8 +185,6 @@ namespace StockSystem.Forms
 
         private void button_addProduct_Click(object sender, EventArgs e)
         {
-            stockProductForm = new StockProductForm(this);
-
             try
             { 
                 sid = (int)numericUpDown_stockId.Value;
