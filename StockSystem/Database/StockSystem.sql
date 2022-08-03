@@ -30,6 +30,7 @@ DROP TRIGGER insertDateTime_trigger_stockCompany;
 DROP TRIGGER updateDateTime_trigger_stockCompany;
 DROP TRIGGER insertDateTime_trigger_stockProduct; 
 DROP TRIGGER updateDateTime_trigger_stockProduct;
+DROP TRIGGER addProductPrice_productInfo_trigger;
 
 
 INSERT INTO productInfo(pname,barcode,sim,pic,price,stock) VALUES('Chocolate', 12345, '453123468', '', 6.99, 10);

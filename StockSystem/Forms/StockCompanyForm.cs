@@ -19,17 +19,20 @@ namespace StockSystem.Forms
         private StockCompany stockCompany;
         private StockProduct stockProduct;
         private StockProductForm stockProductForm;
-        private string query = "SELECT * FROM stockCompany_view ORDER BY sid ASC";
-        private string query_2 = "SELECT * FROM stockProduct_view ORDER BY sid ASC";
+        private string queryForCompany = "SELECT * FROM stockCompany_view ORDER BY sid ASC";
+        private string queryForProduct = "SELECT * FROM stockProduct_view ORDER BY sid ASC";
+        private string queryNewRows = "SELECT * FROM stockProduct_view WHERE sid > :sid ORDER BY sid ASC";
         private int sid;
         private int cid;
+        private int lastSid;
         public StockCompanyForm(Form1 form1)
         {
             InitializeComponent();
             this.form1 = form1;
             stockCompany = new StockCompany();
-            stockProductForm = new StockProductForm(this);
             stockProduct = new StockProduct();
+            int row = stockProduct.stockProductList(queryForProduct).Rows.Count - 1;
+            lastSid = Int32.Parse(stockProduct.stockProductList(queryForProduct).Rows[row]["sid"].ToString());
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -61,7 +64,7 @@ namespace StockSystem.Forms
 
 
             // Show table in dataGridView
-            dataGridView_stockCompany.DataSource = stockProduct.stockProductList(query_2);
+            dataGridView_stockCompany.DataSource = stockProduct.stockProductWithPidList(queryNewRows,lastSid);
 
             // customize datagridView header
             dataGridView_stockCompany.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
@@ -79,13 +82,15 @@ namespace StockSystem.Forms
         {
             try
             {
+                stockProductForm = new StockProductForm(this);
+
                 int cid = (int)numericUpDown_companyId.Value;
                 int tip = (int)numericUpDown_tip.Value;
                 string status = textBox_status.Text;
                 String irsaliyeDate = dateTimePicker_IrsaliyeDate.Value.Date.ToString("dd/MM/yyyy");
                 int irsaliyeNo = (int)numericUpDown_IrsaliyeNo.Value;
 
-                DateTime date_2 = DateTime.ParseExact(irsaliyeDate, @"d/M/yyyy",
+                DateTime date_2 = DateTime.ParseExact(irsaliyeDate, @"dd/MM/yyyy",
                     System.Globalization.CultureInfo.InvariantCulture);
 
                 if (cid == 0)
@@ -101,9 +106,10 @@ namespace StockSystem.Forms
                     {
                         MessageBox.Show("Company is added to the Stock Successfully!", "Company Added Successfully", MessageBoxButtons.OK);
 
-                        int row = stockCompany.stockCompanyList(query).Rows.Count - 1;
-                        this.sid = Int32.Parse(dataGridView_stockCompany.Rows[row].Cells[0].Value.ToString());
-                        this.cid = Int32.Parse(dataGridView_stockCompany.Rows[row].Cells[1].Value.ToString());
+                        // sending sid and cid to the stockProductForm for selecting the products which belongs to the current company
+                        int row = stockCompany.stockCompanyList(queryForCompany).Rows.Count - 1;
+                        this.sid = Int32.Parse(stockCompany.stockCompanyList(queryForCompany).Rows[row]["sid"].ToString());
+                        this.cid = Int32.Parse(stockCompany.stockCompanyList(queryForCompany).Rows[row]["cid"].ToString());
                     }
                 }
 
@@ -112,8 +118,7 @@ namespace StockSystem.Forms
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception);
-                throw;
+                MessageBox.Show(exception.Message, "Invalid ID");
             }
         }
 
@@ -134,7 +139,7 @@ namespace StockSystem.Forms
                         MessageBoxIcon.Information);
 
                     // populate datagridView with genres
-                    dataGridView_stockCompany.DataSource = stockCompany.stockCompanyList(query);
+                    dataGridView_stockCompany.DataSource = stockProduct.stockProductWithPidList(queryNewRows, lastSid);
                 }
                 else
                 {
@@ -159,7 +164,7 @@ namespace StockSystem.Forms
                         MessageBoxIcon.Information);
 
                     // populate datagridView with productInfo
-                    dataGridView_stockCompany.DataSource = stockCompany.stockCompanyList(query);
+                    dataGridView_stockCompany.DataSource = stockProduct.stockProductWithPidList(queryNewRows, lastSid);
                 }
                 else
                 {
@@ -172,16 +177,6 @@ namespace StockSystem.Forms
             }
         }
 
-        private void dataGridView_stockCompany_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            numericUpDown_stockId.Text = dataGridView_stockCompany.CurrentRow.Cells[0].Value.ToString();
-            numericUpDown_companyId.Text = dataGridView_stockCompany.CurrentRow.Cells[1].Value.ToString();
-            numericUpDown_tip.Text = dataGridView_stockCompany.CurrentRow.Cells[2].Value.ToString();
-            textBox_status.Text = dataGridView_stockCompany.CurrentRow.Cells[3].Value.ToString();
-            dateTimePicker_IrsaliyeDate.Text = dataGridView_stockCompany.CurrentRow.Cells[5].Value.ToString();
-            numericUpDown_IrsaliyeNo.Text = dataGridView_stockCompany.CurrentRow.Cells[6].Value.ToString();
-
-        }
 
         private void button_addProduct_Click(object sender, EventArgs e)
         {
@@ -208,6 +203,11 @@ namespace StockSystem.Forms
         public int getCid()
         {
             return cid;
+        }
+
+        public int getLastSid()
+        {
+            return this.lastSid;
         }
     }
 }

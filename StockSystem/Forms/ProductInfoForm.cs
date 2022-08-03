@@ -15,16 +15,15 @@ namespace StockSystem.Forms
     {
         private Form1 form1;
         private ProductInfo productInfo = new ProductInfo();
+
         private string query = "SELECT P.pid,P.pname,P.barcode,P.sim,P.pic,P.price AS FirstPrice," +
-                               "(SELECT PP.price " +
+                               "NVL((SELECT PP.price " +
                                "FROM productPrice PP " +
                                "WHERE PP.pid = P.pid AND " +
                                "PP.priceValidityDate = (SELECT MAX(PP_2.priceValidityDate) " +
-                                                       "FROM productPrice PP_2 where PP_2.priceValidityDate <= sysdate AND PP.pid = PP_2.pid)) AS ValidPrice, P.stock,P.insertDateTime,P.updateDateTime FROM productInfo P, productPrice PP " +
-                                                       "WHERE P.pid = PP.pid AND " +
-                                                       "PP.priceValidityDate = (SELECT MAX (PP_2.priceValidityDate) " +
-                                                                               "FROM productPrice PP_2 " +
-                                                                               "WHERE PP_2.priceValidityDate <= sysdate AND PP.pid = PP_2.pid)";
+                               "FROM productPrice PP_2 " +
+                               "where PP_2.priceValidityDate <= sysdate AND PP.pid = PP_2.pid)) ,P.price) AS ValidPrice," +
+                               " P.stock,P.insertDateTime,P.updateDateTime FROM productInfo P";
         private ProductPrice productPrice;
 
         public ProductInfoForm(Form1 form1)

@@ -35,6 +35,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button_addProduct = new System.Windows.Forms.Button();
             this.button_delete = new System.Windows.Forms.Button();
             this.button_edit = new System.Windows.Forms.Button();
             this.button_add = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.numericUpDown_IrsaliyeNo = new System.Windows.Forms.NumericUpDown();
             this.button_selectCompany = new System.Windows.Forms.Button();
             this.dataGridView_stockCompany = new System.Windows.Forms.DataGridView();
-            this.button_addProduct = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_stockId)).BeginInit();
@@ -113,6 +113,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(144, 502);
             this.panel1.TabIndex = 10;
+            // 
+            // button_addProduct
+            // 
+            this.button_addProduct.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_addProduct.Image = ((System.Drawing.Image)(resources.GetObject("button_addProduct.Image")));
+            this.button_addProduct.Location = new System.Drawing.Point(0, 81);
+            this.button_addProduct.Name = "button_addProduct";
+            this.button_addProduct.Size = new System.Drawing.Size(144, 57);
+            this.button_addProduct.TabIndex = 8;
+            this.button_addProduct.Text = "Add Product";
+            this.button_addProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button_addProduct.UseVisualStyleBackColor = true;
+            this.button_addProduct.Click += new System.EventHandler(this.button_addProduct_Click);
             // 
             // button_delete
             // 
@@ -314,20 +327,6 @@
             this.dataGridView_stockCompany.RowTemplate.Height = 24;
             this.dataGridView_stockCompany.Size = new System.Drawing.Size(826, 223);
             this.dataGridView_stockCompany.TabIndex = 45;
-            this.dataGridView_stockCompany.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_stockCompany_CellClick);
-            // 
-            // button_addProduct
-            // 
-            this.button_addProduct.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_addProduct.Image = ((System.Drawing.Image)(resources.GetObject("button_addProduct.Image")));
-            this.button_addProduct.Location = new System.Drawing.Point(0, 81);
-            this.button_addProduct.Name = "button_addProduct";
-            this.button_addProduct.Size = new System.Drawing.Size(144, 57);
-            this.button_addProduct.TabIndex = 8;
-            this.button_addProduct.Text = "Add Product";
-            this.button_addProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button_addProduct.UseVisualStyleBackColor = true;
-            this.button_addProduct.Click += new System.EventHandler(this.button_addProduct_Click);
             // 
             // StockCompanyForm
             // 
@@ -390,9 +389,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown numericUpDown_IrsaliyeNo;
         private System.Windows.Forms.Button button_selectCompany;
-        private System.Windows.Forms.DataGridView dataGridView_stockCompany;
         public System.Windows.Forms.NumericUpDown numericUpDown_companyId;
         public System.Windows.Forms.NumericUpDown numericUpDown_stockId;
         private System.Windows.Forms.Button button_addProduct;
+        public System.Windows.Forms.DataGridView dataGridView_stockCompany;
     }
 }
