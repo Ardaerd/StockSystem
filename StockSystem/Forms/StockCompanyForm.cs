@@ -24,6 +24,7 @@ namespace StockSystem.Forms
         private string queryNewRows = "SELECT * FROM stockProduct_view WHERE sid > :sid ORDER BY sid ASC";
         private int sid;
         private int cid;
+        private string clickedPid;
         private int lastSid;
         public StockCompanyForm(Form1 form1)
         {
@@ -91,7 +92,7 @@ namespace StockSystem.Forms
                 int irsaliyeNo = (int)numericUpDown_IrsaliyeNo.Value;
 
                 DateTime date_2 = DateTime.ParseExact(irsaliyeDate, @"dd/MM/yyyy",
-                    System.Globalization.CultureInfo.InvariantCulture);
+                    System.Globalization.CultureInfo.CurrentCulture);
 
                 if (cid == 0)
                 {
@@ -158,9 +159,9 @@ namespace StockSystem.Forms
             {
                 int sid = (int)numericUpDown_stockId.Value;
 
-                if (stockCompany.deleteStockProduct(sid))
+                if (stockProduct.deleteStockProduct(sid,Int32.Parse(this.clickedPid)))
                 {
-                    MessageBox.Show("StockProduct is removed successfully", "Remove StockCompany", MessageBoxButtons.OK,
+                    MessageBox.Show("Product is removed successfully", "Remove Product", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
 
                     // populate datagridView with productInfo
@@ -181,17 +182,17 @@ namespace StockSystem.Forms
         private void button_addProduct_Click(object sender, EventArgs e)
         {
             try
-            { 
-                sid = (int)numericUpDown_stockId.Value;
-                cid = (int)numericUpDown_companyId.Value;
+            {
 
-                stockProductForm.Show();
-                this.Hide();
+                MessageBox.Show("All the transaction are committed!", "Transactions Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                form1.Show();
+                this.Close();
                 
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.Message, "Invalid ID");
+                MessageBox.Show(exception.Message, "Error",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
         }
 
@@ -208,6 +209,12 @@ namespace StockSystem.Forms
         public int getLastSid()
         {
             return this.lastSid;
+        }
+
+        private void dataGridView_stockCompany_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            numericUpDown_stockId.Text = dataGridView_stockCompany.CurrentRow.Cells[0].Value.ToString();
+            this.clickedPid = dataGridView_stockCompany.CurrentRow.Cells[1].Value.ToString();
         }
     }
 }

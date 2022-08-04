@@ -118,6 +118,10 @@ namespace StockSystem.Forms
 
                     // populate datagridView with genres
                     dataGridView_stockProduct.DataSource = stockProduct.stockProductWithPidList(queryNewRow,lastSid);
+
+                    // Editing product to the dataGridView of the stockCompanyForm
+                    stockCompanyForm.dataGridView_stockCompany.DataSource =
+                        stockProduct.stockProductWithPidList(queryNewRow, stockCompanyForm.getLastSid());
                 }
                 else
                 {
@@ -144,6 +148,10 @@ namespace StockSystem.Forms
 
                     // populate datagridView with productInfo
                     dataGridView_stockProduct.DataSource = stockProduct.stockProductWithPidList(queryNewRow,lastSid);
+
+                    // Deleting product to the dataGridView of the stockCompanyForm
+                    stockCompanyForm.dataGridView_stockCompany.DataSource =
+                        stockProduct.stockProductWithPidList(queryNewRow, stockCompanyForm.getLastSid());
                 }
                 else
                 {

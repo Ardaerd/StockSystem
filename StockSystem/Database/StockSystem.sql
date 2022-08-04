@@ -43,8 +43,8 @@ SELECT * FROM company;
 SELECT * FROM companyProduct;
 SELECT * FROM stockCompany;
 SELECT * FROM stockProduct;
-SELECT * FROM stockTracking_view;
 SELECT * FROM selectedCompanyProduct_view;
+SELECT * FROM stockTracking_view;
 
 SELECT P.pid,P.pname,P.barcode,P.sim,P.pic,P.price AS FirstPrice,
 (SELECT PP.price
@@ -72,9 +72,9 @@ CREATE VIEW companyProduct_view AS
     INNER JOIN company C ON CP.cid = C.cid;
 
 CREATE VIEW stockTracking_view AS
-    SELECT C.cname,P.pname,P.price,SP.quantity,P.stock,SC.status,SC.stockEntryDate,SC.irsaliyeDate,SC.irsaliyeNo
-    FROM productInfo P, company C, stockCompany SC, stockProduct SP, companyProduct CP
-    WHERE C.cid = SC.cid AND P.pid = SP.pid AND P.pid = CP.pid AND C.cid = CP.cid;
+    SELECT SC.sid,SC.cid,C.cname,SC.tip,SC.status,SC.stockEntryDate,SC.irsaliyeDate,SC.irsaliyeNo,SC.updateDateTime
+    FROM stockCompany SC
+    INNER JOIN company C ON SC.cid = C.cid;
     
 CREATE VIEW stockCompany_view AS
     SELECT SC.sid,SC.cid,C.cname,SC.tip,SC.status,SC.stockEntryDate,SC.irsaliyeDate,SC.irsaliyeNo,SC.updateDateTime

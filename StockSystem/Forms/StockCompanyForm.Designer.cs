@@ -122,7 +122,7 @@
             this.button_addProduct.Name = "button_addProduct";
             this.button_addProduct.Size = new System.Drawing.Size(144, 57);
             this.button_addProduct.TabIndex = 8;
-            this.button_addProduct.Text = "Add Product";
+            this.button_addProduct.Text = " Done";
             this.button_addProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button_addProduct.UseVisualStyleBackColor = true;
             this.button_addProduct.Click += new System.EventHandler(this.button_addProduct_Click);
@@ -327,6 +327,7 @@
             this.dataGridView_stockCompany.RowTemplate.Height = 24;
             this.dataGridView_stockCompany.Size = new System.Drawing.Size(826, 223);
             this.dataGridView_stockCompany.TabIndex = 45;
+            this.dataGridView_stockCompany.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_stockCompany_CellClick);
             // 
             // StockCompanyForm
             // 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,18 +21,26 @@ namespace StockSystem.Forms
             InitializeComponent();
             stockTracking = new StockTracking();
             this.form1 = form1;
+            addingCompany();
         }
 
         private void button_stock_Click(object sender, EventArgs e)
         {
-            DateTime startingDate = dateTimePicker_startingDate.Value.Date;
-            DateTime endingDate = dateTimePicker_endingDate.Value.Date;
-            string companyName = textBox_companyName.Text;
+            string startingDate = dateTimePicker_startingDate.Value.Date.ToString("dd/MM/yyyy");
+            string endingDate = dateTimePicker_endingDate.Value.Date.ToString("dd/MM/yyyy");
+            string companyName = "";
+
+            
+
+            if (comboBox_companyName.SelectedItem != null)
+            {
+                companyName = comboBox_companyName.SelectedValue.ToString();
+            }
 
             Console.WriteLine(startingDate);
 
             // Show table in dataGridView
-            dataGridView_stock.DataSource = stockTracking.stockTrackingList(startingDate.ToString("dd/MM/yyyy"),endingDate.ToString("dd/MM/yyyy"),companyName);
+            dataGridView_stock.DataSource = stockTracking.stockTrackingList(startingDate,endingDate,companyName);
         }
 
         private void StockTrackingForm_Load(object sender, EventArgs e)
@@ -41,6 +50,7 @@ namespace StockSystem.Forms
 
             dateTimePicker_endingDate.Format = DateTimePickerFormat.Custom;
             dateTimePicker_endingDate.CustomFormat = "dd/MM/yyyy";
+
             // customize datagridView header
             dataGridView_stock.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
             dataGridView_stock.ColumnHeadersDefaultCellStyle.Font =
@@ -71,7 +81,16 @@ namespace StockSystem.Forms
 
         private void dataGridView_stock_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            textBox_companyName.Text = dataGridView_stock.CurrentRow.Cells[0].Value.ToString();
+        }
+
+        private void addingCompany()
+        {
+            string query = "SELECT cname FROM company";
+
+            comboBox_companyName.DataSource = stockTracking.companyNameList(query);
+            comboBox_companyName.DisplayMember = "cname";
+            comboBox_companyName.ValueMember = "cname";
+            comboBox_companyName.SelectedIndex = -1;
         }
     }
 }
