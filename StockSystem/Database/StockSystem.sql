@@ -12,6 +12,7 @@ DROP VIEW companyProduct_view;
 DROP VIEW stockTracking_view;
 DROP VIEW selectedCompanyProduct_view;
 
+DROP TRIGGER deleteStock_stockProduct_trigger;
 DROP TRIGGER stockProduct_view;
 DROP TRIGGER stockCompany_view;
 DROP TRIGGER stockEntryDate_trigger_stockCompany;
@@ -45,6 +46,8 @@ SELECT * FROM stockCompany;
 SELECT * FROM stockProduct;
 SELECT * FROM selectedCompanyProduct_view;
 SELECT * FROM stockTracking_view;
+
+SELECT * FROM stockTracking_view WHERE stockEntryDate BETWEEN TO_DATE('7/13/2022','MM/DD/YYYY') AND TO_DATE('8/13/2022','MM/DD/YYYY');
 
 SELECT P.pid,P.pname,P.barcode,P.sim,P.pic,P.price AS FirstPrice,
 (SELECT PP.price
@@ -209,6 +212,15 @@ FOR EACH ROW
 BEGIN
     UPDATE productInfo SET stock = stock + :NEW.quantity WHERE pid = :NEW.pid;
 END updateStock_stockProduct_trigger;
+
+-- for updating stock in productInfo when stockProduct is deleting
+CREATE TRIGGER deleteStock_stockProduct_trigger
+AFTER DELETE
+ON stockProduct 
+FOR EACH ROW
+BEGIN
+    UPDATE productInfo SET stock = stock - :old.quantity WHERE pid = :old.pid;
+END deleteStock_stockProduct_trigger;
 
 -- for insertDateTime ON productInfo
 CREATE TRIGGER insertDateTime_trigger 

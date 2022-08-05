@@ -111,11 +111,21 @@ namespace StockSystem.Forms
                         int row = stockCompany.stockCompanyList(queryForCompany).Rows.Count - 1;
                         this.sid = Int32.Parse(stockCompany.stockCompanyList(queryForCompany).Rows[row]["sid"].ToString());
                         this.cid = Int32.Parse(stockCompany.stockCompanyList(queryForCompany).Rows[row]["cid"].ToString());
+                        numericUpDown_stockId.Value = sid;
+                        numericUpDown_companyId.Value = cid;
+
+                        numericUpDown_stockId.Enabled = false;
+                        numericUpDown_companyId.Enabled = false;
+                        button_add.Enabled = false;
+                        button_selectCompany.Enabled = false;
+                        numericUpDown_tip.Enabled = false;
+                        numericUpDown_IrsaliyeNo.Enabled = false;
+                        dateTimePicker_IrsaliyeDate.Enabled = false;
+
+                        stockProductForm.Show();
+                        this.Hide();
                     }
                 }
-
-                stockProductForm.Show();
-                this.Hide();
             }
             catch (Exception exception)
             {
@@ -178,24 +188,6 @@ namespace StockSystem.Forms
             }
         }
 
-
-        private void button_addProduct_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                MessageBox.Show("All the transaction are committed!", "Transactions Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                form1.Show();
-                this.Close();
-                
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message, "Error",MessageBoxButtons.OK,MessageBoxIcon.Warning);
-            }
-        }
-
         public int getSid()
         {
             return sid;
@@ -213,8 +205,56 @@ namespace StockSystem.Forms
 
         private void dataGridView_stockCompany_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            numericUpDown_stockId.Text = dataGridView_stockCompany.CurrentRow.Cells[0].Value.ToString();
             this.clickedPid = dataGridView_stockCompany.CurrentRow.Cells[1].Value.ToString();
+        }
+
+        private void button_Done_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+
+                MessageBox.Show("All the transaction are committed!", "Transactions Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                StockCompanyForm stockCompanyForm = new StockCompanyForm(this.form1);
+                this.Close();
+                stockCompanyForm.Show();
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void button_addProduct_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                stockProductForm = new StockProductForm(this);
+                int cid = (int)numericUpDown_companyId.Value;
+                int tip = (int)numericUpDown_tip.Value;
+                string status = textBox_status.Text;
+                DateTime irsaliyeDate = dateTimePicker_IrsaliyeDate.Value.Date;
+                int irsaliyeNo = (int)numericUpDown_IrsaliyeNo.Value;
+
+                if (stockCompany.editStockProduct(sid, cid, tip, status, irsaliyeDate, irsaliyeNo))
+                {
+                    MessageBox.Show("Company is added to the Stock Successfully!", "Company Added Successfully", MessageBoxButtons.OK);
+
+                    stockProductForm.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("You have to add Company First", "Add Company", MessageBoxButtons.OK,MessageBoxIcon.Warning);
+
+                }
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error");
+            }
         }
     }
 }

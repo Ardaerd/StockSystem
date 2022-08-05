@@ -28,7 +28,7 @@ namespace StockSystem.Classes
                 table = db.getData(query, null);*/
 
                 query = "SELECT * FROM stockTracking_view " +
-                        "WHERE stockEntryDate BETWEEN TO_DATE(to_char(:startDate),'DD/MM/YYYY') AND TO_DATE(to_char(:endDate),'DD/MM/YYYY')";
+                        "WHERE trunc(stockEntryDate) BETWEEN TO_DATE(to_char(:startDate),'DD/MM/YYYY') AND TO_DATE(to_char(:endDate),'DD/MM/YYYY')";
 
                 param = new OracleParameter[2];
 
@@ -49,7 +49,7 @@ namespace StockSystem.Classes
                 table = db.getData(query, null);*/
 
                 query = "SELECT * FROM stockTracking_view " +
-                        "WHERE stockEntryDate BETWEEN TO_DATE(to_char(:startDate),'DD/MM/YYYY') AND TO_DATE(to_char(:endDate),'DD/MM/YYYY') AND cname LIKE :cname";
+                        "WHERE trunc(stockEntryDate) BETWEEN TO_DATE(to_char(:startDate),'DD/MM/YYYY') AND TO_DATE(to_char(:endDate),'DD/MM/YYYY') AND cname LIKE :cname";
 
                 param = new OracleParameter[3];
 

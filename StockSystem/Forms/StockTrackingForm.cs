@@ -26,21 +26,28 @@ namespace StockSystem.Forms
 
         private void button_stock_Click(object sender, EventArgs e)
         {
-            string startingDate = dateTimePicker_startingDate.Value.Date.ToString("dd/MM/yyyy");
-            string endingDate = dateTimePicker_endingDate.Value.Date.ToString("dd/MM/yyyy");
-            string companyName = "";
-
-            
-
-            if (comboBox_companyName.SelectedItem != null)
+            try
             {
-                companyName = comboBox_companyName.SelectedValue.ToString();
+                string startingDate = dateTimePicker_startingDate.Value.Date.ToString("dd/MM/yyyy");
+                string endingDate = dateTimePicker_endingDate.Value.Date.ToString("dd/MM/yyyy");
+                string companyName = "";
+
+
+
+                if (comboBox_companyName.SelectedItem != null)
+                {
+                    companyName = comboBox_companyName.SelectedValue.ToString();
+                }
+
+                Console.WriteLine(startingDate);
+
+                // Show table in dataGridView
+                dataGridView_stock.DataSource = stockTracking.stockTrackingList(startingDate, endingDate, companyName);
             }
-
-            Console.WriteLine(startingDate);
-
-            // Show table in dataGridView
-            dataGridView_stock.DataSource = stockTracking.stockTrackingList(startingDate,endingDate,companyName);
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error");
+            }
         }
 
         private void StockTrackingForm_Load(object sender, EventArgs e)

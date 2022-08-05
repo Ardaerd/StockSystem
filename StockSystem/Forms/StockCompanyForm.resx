@@ -147,6 +147,16 @@
   </data>
   <data name="button_addProduct.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        jAAAAIwBFCEVQAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACqSURBVEhLYyAK
+        /Gdg9FkXOM93fcAvEPZZHzAXJAaVpRz4rAlWBRr6Hxn7bfRTgUpTDoCu10e3ACQGlaYcjFpAEIx0C4AZ
+        xmtdoJr3+gBjXNhrfUAkugUgMWxqYRhkJjgzAl0yD10zFfFcBmjWxyZJMQaZTVMLgPgnA5CYiyZINQyM
+        izm0jWRiwSDPB0SAUQsIgmFgAa0rfVBmBGaeOfBmy7rA2VAZAoCBAQCgCvrEtSDQ6AAAAABJRU5ErkJg
+        gg==
+</value>
+  </data>
+  <data name="button_Done.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
         3QAAAN0BcFOiBwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAALGSURBVFhHxZfP
         TxNREMd7MOofYKLevRkPbYPE6KH+OnDz4NHEGExMTDTxajwZ403lRk96wG5ro2BiIGrb3RYh0iBVMYiI

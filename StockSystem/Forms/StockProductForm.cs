@@ -28,8 +28,7 @@ namespace StockSystem.Forms
             stockProduct = new StockProduct();
             this.stockCompanyForm = stockCompanyForm;
 
-            int row = stockProduct.stockProductList(queryAllRow).Rows.Count - 1;
-            lastSid = Int32.Parse(stockProduct.stockProductList(queryAllRow).Rows[row]["sid"].ToString());
+            lastSid = stockCompanyForm.getLastSid();
         }
 
         private void button_selectProduct_Click(object sender, EventArgs e)
@@ -168,7 +167,7 @@ namespace StockSystem.Forms
         {
             numericUpDown_StockId.Text = dataGridView_stockProduct.CurrentRow.Cells[0].Value.ToString();
             numericUpDown_ProductId.Text = dataGridView_stockProduct.CurrentRow.Cells[1].Value.ToString();
-            numericUpDownQuantity.Text = dataGridView_stockProduct.CurrentRow.Cells[2].Value.ToString();
+            numericUpDownQuantity.Text = dataGridView_stockProduct.CurrentRow.Cells[4].Value.ToString();
             price = (double)dataGridView_stockProduct.CurrentRow.Cells[3].Value;
         }
 

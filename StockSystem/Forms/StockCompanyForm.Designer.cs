@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockCompanyForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button_addProduct = new System.Windows.Forms.Button();
+            this.button_Done = new System.Windows.Forms.Button();
             this.button_delete = new System.Windows.Forms.Button();
             this.button_edit = new System.Windows.Forms.Button();
             this.button_add = new System.Windows.Forms.Button();
@@ -106,6 +107,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(91)))), ((int)(((byte)(100)))));
             this.panel1.Controls.Add(this.button_addProduct);
+            this.panel1.Controls.Add(this.button_Done);
             this.panel1.Controls.Add(this.button_delete);
             this.panel1.Controls.Add(this.button_edit);
             this.panel1.Controls.Add(this.button_add);
@@ -118,20 +120,33 @@
             // 
             this.button_addProduct.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_addProduct.Image = ((System.Drawing.Image)(resources.GetObject("button_addProduct.Image")));
-            this.button_addProduct.Location = new System.Drawing.Point(0, 81);
+            this.button_addProduct.Location = new System.Drawing.Point(0, 140);
             this.button_addProduct.Name = "button_addProduct";
             this.button_addProduct.Size = new System.Drawing.Size(144, 57);
-            this.button_addProduct.TabIndex = 8;
-            this.button_addProduct.Text = " Done";
+            this.button_addProduct.TabIndex = 9;
+            this.button_addProduct.Text = "Add Product";
             this.button_addProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button_addProduct.UseVisualStyleBackColor = true;
             this.button_addProduct.Click += new System.EventHandler(this.button_addProduct_Click);
+            // 
+            // button_Done
+            // 
+            this.button_Done.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Done.Image = ((System.Drawing.Image)(resources.GetObject("button_Done.Image")));
+            this.button_Done.Location = new System.Drawing.Point(0, 56);
+            this.button_Done.Name = "button_Done";
+            this.button_Done.Size = new System.Drawing.Size(144, 57);
+            this.button_Done.TabIndex = 8;
+            this.button_Done.Text = " Done";
+            this.button_Done.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button_Done.UseVisualStyleBackColor = true;
+            this.button_Done.Click += new System.EventHandler(this.button_Done_Click_1);
             // 
             // button_delete
             // 
             this.button_delete.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_delete.Image = ((System.Drawing.Image)(resources.GetObject("button_delete.Image")));
-            this.button_delete.Location = new System.Drawing.Point(0, 345);
+            this.button_delete.Location = new System.Drawing.Point(0, 392);
             this.button_delete.Name = "button_delete";
             this.button_delete.Size = new System.Drawing.Size(144, 57);
             this.button_delete.TabIndex = 7;
@@ -144,7 +159,7 @@
             // 
             this.button_edit.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_edit.Image = ((System.Drawing.Image)(resources.GetObject("button_edit.Image")));
-            this.button_edit.Location = new System.Drawing.Point(0, 257);
+            this.button_edit.Location = new System.Drawing.Point(0, 308);
             this.button_edit.Name = "button_edit";
             this.button_edit.Size = new System.Drawing.Size(147, 57);
             this.button_edit.TabIndex = 6;
@@ -157,7 +172,7 @@
             // 
             this.button_add.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_add.Image = ((System.Drawing.Image)(resources.GetObject("button_add.Image")));
-            this.button_add.Location = new System.Drawing.Point(0, 169);
+            this.button_add.Location = new System.Drawing.Point(0, 224);
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(144, 57);
             this.button_add.TabIndex = 5;
@@ -304,23 +319,23 @@
             // 
             this.dataGridView_stockCompany.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView_stockCompany.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_stockCompany.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_stockCompany.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView_stockCompany.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_stockCompany.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_stockCompany.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView_stockCompany.Location = new System.Drawing.Point(168, 314);
             this.dataGridView_stockCompany.Name = "dataGridView_stockCompany";
             this.dataGridView_stockCompany.RowHeadersWidth = 51;
@@ -392,7 +407,8 @@
         private System.Windows.Forms.Button button_selectCompany;
         public System.Windows.Forms.NumericUpDown numericUpDown_companyId;
         public System.Windows.Forms.NumericUpDown numericUpDown_stockId;
-        private System.Windows.Forms.Button button_addProduct;
+        private System.Windows.Forms.Button button_Done;
         public System.Windows.Forms.DataGridView dataGridView_stockCompany;
+        private System.Windows.Forms.Button button_addProduct;
     }
 }
