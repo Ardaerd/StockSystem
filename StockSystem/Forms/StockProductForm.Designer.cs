@@ -206,6 +206,7 @@
             this.dataGridView_stockProduct.Size = new System.Drawing.Size(891, 305);
             this.dataGridView_stockProduct.TabIndex = 50;
             this.dataGridView_stockProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_stockProduct_CellClick);
+            this.dataGridView_stockProduct.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_stockProduct_CellValueChanged);
             // 
             // numericUpDown_StockId
             // 

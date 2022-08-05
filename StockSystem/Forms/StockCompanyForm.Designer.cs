@@ -40,7 +40,6 @@
             this.button_delete = new System.Windows.Forms.Button();
             this.button_edit = new System.Windows.Forms.Button();
             this.button_add = new System.Windows.Forms.Button();
-            this.textBox_status = new System.Windows.Forms.TextBox();
             this.numericUpDown_stockId = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -54,6 +53,7 @@
             this.numericUpDown_IrsaliyeNo = new System.Windows.Forms.NumericUpDown();
             this.button_selectCompany = new System.Windows.Forms.Button();
             this.dataGridView_stockCompany = new System.Windows.Forms.DataGridView();
+            this.comboBox_status = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_stockId)).BeginInit();
@@ -180,14 +180,6 @@
             this.button_add.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button_add.UseVisualStyleBackColor = true;
             this.button_add.Click += new System.EventHandler(this.button_add_Click);
-            // 
-            // textBox_status
-            // 
-            this.textBox_status.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_status.Location = new System.Drawing.Point(785, 126);
-            this.textBox_status.Name = "textBox_status";
-            this.textBox_status.Size = new System.Drawing.Size(160, 29);
-            this.textBox_status.TabIndex = 32;
             // 
             // numericUpDown_stockId
             // 
@@ -343,6 +335,16 @@
             this.dataGridView_stockCompany.Size = new System.Drawing.Size(826, 223);
             this.dataGridView_stockCompany.TabIndex = 45;
             this.dataGridView_stockCompany.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_stockCompany_CellClick);
+            this.dataGridView_stockCompany.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_stockCompany_CellValueChanged);
+            // 
+            // comboBox_status
+            // 
+            this.comboBox_status.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox_status.FormattingEnabled = true;
+            this.comboBox_status.Location = new System.Drawing.Point(785, 130);
+            this.comboBox_status.Name = "comboBox_status";
+            this.comboBox_status.Size = new System.Drawing.Size(160, 29);
+            this.comboBox_status.TabIndex = 46;
             // 
             // StockCompanyForm
             // 
@@ -350,6 +352,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(1006, 549);
+            this.Controls.Add(this.comboBox_status);
             this.Controls.Add(this.dataGridView_stockCompany);
             this.Controls.Add(this.button_selectCompany);
             this.Controls.Add(this.numericUpDown_IrsaliyeNo);
@@ -357,7 +360,6 @@
             this.Controls.Add(this.dateTimePicker_IrsaliyeDate);
             this.Controls.Add(this.numericUpDown_tip);
             this.Controls.Add(this.numericUpDown_companyId);
-            this.Controls.Add(this.textBox_status);
             this.Controls.Add(this.numericUpDown_stockId);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -381,7 +383,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_IrsaliyeNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_stockCompany)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -394,7 +395,6 @@
         private System.Windows.Forms.Button button_delete;
         private System.Windows.Forms.Button button_edit;
         private System.Windows.Forms.Button button_add;
-        private System.Windows.Forms.TextBox textBox_status;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -410,5 +410,6 @@
         private System.Windows.Forms.Button button_Done;
         public System.Windows.Forms.DataGridView dataGridView_stockCompany;
         private System.Windows.Forms.Button button_addProduct;
+        private System.Windows.Forms.ComboBox comboBox_status;
     }
 }

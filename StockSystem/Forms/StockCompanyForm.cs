@@ -77,6 +77,8 @@ namespace StockSystem.Forms
 
 
             dataGridView_stockCompany.EnableHeadersVisualStyles = false;
+
+            addingStatus();
         }
 
         private void button_add_Click(object sender, EventArgs e)
@@ -87,7 +89,7 @@ namespace StockSystem.Forms
 
                 int cid = (int)numericUpDown_companyId.Value;
                 int tip = (int)numericUpDown_tip.Value;
-                string status = textBox_status.Text;
+                string status = comboBox_status.SelectedValue.ToString();
                 String irsaliyeDate = dateTimePicker_IrsaliyeDate.Value.Date.ToString("dd/MM/yyyy");
                 int irsaliyeNo = (int)numericUpDown_IrsaliyeNo.Value;
 
@@ -140,7 +142,7 @@ namespace StockSystem.Forms
                 int sid = (int)numericUpDown_stockId.Value;
                 int cid = (int)numericUpDown_companyId.Value;
                 int tip = (int)numericUpDown_tip.Value;
-                string status = textBox_status.Text;
+                string status = comboBox_status.SelectedValue.ToString();
                 DateTime irsaliyeDate = dateTimePicker_IrsaliyeDate.Value.Date;
                 int irsaliyeNo = (int)numericUpDown_IrsaliyeNo.Value;
 
@@ -233,7 +235,7 @@ namespace StockSystem.Forms
                 stockProductForm = new StockProductForm(this);
                 int cid = (int)numericUpDown_companyId.Value;
                 int tip = (int)numericUpDown_tip.Value;
-                string status = textBox_status.Text;
+                string status = comboBox_status.SelectedValue.ToString();
                 DateTime irsaliyeDate = dateTimePicker_IrsaliyeDate.Value.Date;
                 int irsaliyeNo = (int)numericUpDown_IrsaliyeNo.Value;
 
@@ -255,6 +257,25 @@ namespace StockSystem.Forms
             {
                 MessageBox.Show(exception.Message, "Error");
             }
+        }
+
+        private void dataGridView_stockCompany_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void addingStatus()
+        {
+            // Bind combobox to dictionary
+            Dictionary<string, string> status = new Dictionary<string, string>();
+            status.Add("Prepared","Prepared");
+            comboBox_status.DataSource = new BindingSource(status, null);
+            comboBox_status.DisplayMember = "Value";
+            comboBox_status.ValueMember = "Key";
+
+            // Get combobox selection (in handler)
+            string value = ((KeyValuePair<string, string>)comboBox_status.SelectedItem).Value;
+            comboBox_status.SelectedIndex = -1;
         }
     }
 }

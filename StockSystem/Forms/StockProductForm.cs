@@ -175,5 +175,13 @@ namespace StockSystem.Forms
         {
             return stockCompanyForm.getCid();
         }
+
+        private void dataGridView_stockProduct_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            numericUpDown_StockId.Text = dataGridView_stockProduct.CurrentRow.Cells[0].Value.ToString();
+            numericUpDown_ProductId.Text = dataGridView_stockProduct.CurrentRow.Cells[1].Value.ToString();
+            numericUpDownQuantity.Text = dataGridView_stockProduct.CurrentRow.Cells[4].Value.ToString();
+            price = (double)dataGridView_stockProduct.CurrentRow.Cells[3].Value;
+        }
     }
 }
