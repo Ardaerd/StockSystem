@@ -16,6 +16,8 @@ namespace StockSystem.Forms
     {
         private StockTracking stockTracking;
         private Form1 form1;
+        private StockProductForm stockProductForm;
+        private int sid;
         public StockTrackingForm(Form1 form1)
         {
             InitializeComponent();
@@ -43,6 +45,13 @@ namespace StockSystem.Forms
 
                 // Show table in dataGridView
                 dataGridView_stock.DataSource = stockTracking.stockTrackingList(startingDate, endingDate, companyName);
+
+                int column = dataGridView_stock.Columns.Count - 1;
+
+                for (int i = 0; i < column; i++)
+                {
+                    dataGridView_stock.Columns[i].ReadOnly = true;
+                }
             }
             catch (Exception exception)
             {
@@ -54,9 +63,11 @@ namespace StockSystem.Forms
         {
             dateTimePicker_startingDate.Format = DateTimePickerFormat.Custom;
             dateTimePicker_startingDate.CustomFormat = "dd/MM/yyyy";
+            dateTimePicker_startingDate.Value = DateTime.Now;
 
             dateTimePicker_endingDate.Format = DateTimePickerFormat.Custom;
             dateTimePicker_endingDate.CustomFormat = "dd/MM/yyyy";
+            dateTimePicker_endingDate.Value = DateTime.Now;
 
             // customize datagridView header
             dataGridView_stock.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
@@ -68,6 +79,12 @@ namespace StockSystem.Forms
 
 
             dataGridView_stock.EnableHeadersVisualStyles = false;
+            int column = dataGridView_stock.Columns.Count - 1;
+
+            for (int i = 0; i < column; i++)
+            {
+                dataGridView_stock.Columns[i].ReadOnly = true;
+            }
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -86,10 +103,6 @@ namespace StockSystem.Forms
             label4.BackColor = Color.FromArgb(57, 91, 100);
         }
 
-        private void dataGridView_stock_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
-
         private void addingCompany()
         {
             string query = "SELECT cname FROM company";
@@ -98,6 +111,28 @@ namespace StockSystem.Forms
             comboBox_companyName.DisplayMember = "cname";
             comboBox_companyName.ValueMember = "cname";
             comboBox_companyName.SelectedIndex = -1;
+        }
+
+        private void dataGridView_stock_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                stockProductForm = new StockProductForm(null, this);
+
+                this.sid = Int32.Parse(dataGridView_stock.CurrentRow.Cells[0].Value.ToString());
+
+                stockProductForm.Show();
+                this.Hide();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error");
+            }
+        }
+
+        public int getSid()
+        {
+            return sid;
         }
     }
 }

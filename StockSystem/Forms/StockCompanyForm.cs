@@ -65,7 +65,7 @@ namespace StockSystem.Forms
 
 
             // Show table in dataGridView
-            dataGridView_stockCompany.DataSource = stockProduct.stockProductWithPidList(queryNewRows,lastSid);
+            dataGridView_stockCompany.DataSource = stockProduct.stockProductListWithSid(queryNewRows,lastSid);
 
             // customize datagridView header
             dataGridView_stockCompany.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
@@ -78,6 +78,16 @@ namespace StockSystem.Forms
 
             dataGridView_stockCompany.EnableHeadersVisualStyles = false;
 
+            int column = dataGridView_stockCompany.Columns.Count - 1;
+
+            for (int i = 0; i < column; i++)
+            {
+                if (i != 4)
+                {
+                    dataGridView_stockCompany.Columns[i].ReadOnly = true;
+                }
+            }
+
             addingStatus();
         }
 
@@ -85,7 +95,7 @@ namespace StockSystem.Forms
         {
             try
             {
-                stockProductForm = new StockProductForm(this);
+                stockProductForm = new StockProductForm(this,null);
 
                 int cid = (int)numericUpDown_companyId.Value;
                 int tip = (int)numericUpDown_tip.Value;
@@ -152,7 +162,7 @@ namespace StockSystem.Forms
                         MessageBoxIcon.Information);
 
                     // populate datagridView with genres
-                    dataGridView_stockCompany.DataSource = stockProduct.stockProductWithPidList(queryNewRows, lastSid);
+                    dataGridView_stockCompany.DataSource = stockProduct.stockProductListWithSid(queryNewRows, lastSid);
                 }
                 else
                 {
@@ -177,7 +187,7 @@ namespace StockSystem.Forms
                         MessageBoxIcon.Information);
 
                     // populate datagridView with productInfo
-                    dataGridView_stockCompany.DataSource = stockProduct.stockProductWithPidList(queryNewRows, lastSid);
+                    dataGridView_stockCompany.DataSource = stockProduct.stockProductListWithSid(queryNewRows, lastSid);
                 }
                 else
                 {
@@ -215,7 +225,23 @@ namespace StockSystem.Forms
             try
             {
 
-                MessageBox.Show("All the transaction are committed!", "Transactions Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                int sid = (int)numericUpDown_stockId.Value;
+                int cid = (int)numericUpDown_companyId.Value;
+                int tip = (int)numericUpDown_tip.Value;
+                string status = "Confirmed";
+                DateTime irsaliyeDate = dateTimePicker_IrsaliyeDate.Value.Date;
+                int irsaliyeNo = (int)numericUpDown_IrsaliyeNo.Value;
+
+                if (stockCompany.editStockProduct(sid, cid, tip, status, irsaliyeDate, irsaliyeNo))
+                {
+                    MessageBox.Show("Products are Confirmed", "Confirm", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show("Products are not Confirmed", "Confirmed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
 
                 StockCompanyForm stockCompanyForm = new StockCompanyForm(this.form1);
                 this.Close();
@@ -232,7 +258,7 @@ namespace StockSystem.Forms
         {
             try
             {
-                stockProductForm = new StockProductForm(this);
+                stockProductForm = new StockProductForm(this,null);
                 int cid = (int)numericUpDown_companyId.Value;
                 int tip = (int)numericUpDown_tip.Value;
                 string status = comboBox_status.SelectedValue.ToString();

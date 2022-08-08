@@ -123,7 +123,7 @@
             this.dateTimePicker_startingDate.Name = "dateTimePicker_startingDate";
             this.dateTimePicker_startingDate.Size = new System.Drawing.Size(139, 28);
             this.dateTimePicker_startingDate.TabIndex = 14;
-            this.dateTimePicker_startingDate.Value = new System.DateTime(2022, 7, 29, 0, 0, 0, 0);
+            this.dateTimePicker_startingDate.Value = new System.DateTime(2022, 8, 8, 0, 0, 0, 0);
             // 
             // dateTimePicker_endingDate
             // 
@@ -134,7 +134,7 @@
             this.dateTimePicker_endingDate.Name = "dateTimePicker_endingDate";
             this.dateTimePicker_endingDate.Size = new System.Drawing.Size(139, 28);
             this.dateTimePicker_endingDate.TabIndex = 15;
-            this.dateTimePicker_endingDate.Value = new System.DateTime(2022, 7, 29, 0, 0, 0, 0);
+            this.dateTimePicker_endingDate.Value = new System.DateTime(2022, 8, 8, 0, 0, 0, 0);
             // 
             // label3
             // 

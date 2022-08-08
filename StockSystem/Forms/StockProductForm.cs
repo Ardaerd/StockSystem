@@ -17,18 +17,19 @@ namespace StockSystem.Forms
         private StockCompanyForm stockCompanyForm = null;
         private Form1 form1;
         private StockProduct stockProduct;
+        private StockTrackingForm stockTrackingForm;
         private double price;
-        private string queryAllRow = "SELECT * FROM stockProduct_view ORDER BY sid ASC";
+        private string getQuerySid = "SELECT * FROM stockProduct_view WHERE sid = :sid ORDER BY sid ASC";
         private string queryNewRow = "SELECT * FROM stockProduct_view WHERE sid > :sid ORDER BY sid ASC";
         private int lastSid;
 
-        public StockProductForm(StockCompanyForm stockCompanyForm)
+        public StockProductForm(StockCompanyForm stockCompanyForm, StockTrackingForm stockTrackingForm)
         {
             InitializeComponent();
             stockProduct = new StockProduct();
             this.stockCompanyForm = stockCompanyForm;
+            this.stockTrackingForm = stockTrackingForm;
 
-            lastSid = stockCompanyForm.getLastSid();
         }
 
         private void button_selectProduct_Click(object sender, EventArgs e)
@@ -40,7 +41,16 @@ namespace StockSystem.Forms
         private void label2_Click(object sender, EventArgs e)
         {
             this.Close();
-            stockCompanyForm.Show();
+
+            if (stockCompanyForm != null)
+            {
+                stockCompanyForm.Show();
+            }
+
+            if (stockTrackingForm != null)
+            {
+                stockTrackingForm.Show();
+            }
         }
 
         private void label2_MouseEnter(object sender, EventArgs e)
@@ -55,11 +65,32 @@ namespace StockSystem.Forms
 
         private void StockProductForm_Load(object sender, EventArgs e)
         {
+            if (stockTrackingForm != null)
+            {
+                int sid = stockTrackingForm.getSid();
+                dataGridView_stockProduct.DataSource = stockProduct.stockProductListWithSid(getQuerySid,sid);
+            }
 
-            stockCompanyForm.Hide();
+            if (stockCompanyForm != null)
+            {
+                lastSid = stockCompanyForm.getLastSid();
 
-            // Show table in dataGridView
-            dataGridView_stockProduct.DataSource = stockProduct.stockProductWithPidList(queryNewRow,lastSid);
+                // Show table in dataGridView
+                dataGridView_stockProduct.DataSource = stockProduct.stockProductListWithSid(queryNewRow, lastSid);
+
+                numericUpDown_StockId.Value = stockCompanyForm.getSid();
+                numericUpDown_StockId.Enabled = false;
+
+                int column = dataGridView_stockProduct.Columns.Count - 1;
+
+                for (int i = 0; i < column; i++)
+                {
+                    if (i != 4)
+                    {
+                        dataGridView_stockProduct.Columns[i].ReadOnly = true;
+                    }
+                }
+            }
 
             // customize datagridView header
             dataGridView_stockProduct.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
@@ -71,6 +102,7 @@ namespace StockSystem.Forms
 
 
             dataGridView_stockProduct.EnableHeadersVisualStyles = false;
+
         }
 
         private void button_add_Click(object sender, EventArgs e)
@@ -86,11 +118,11 @@ namespace StockSystem.Forms
 
                 if (stockProduct.addStockProduct(sid, pid, quantity, price, total))
                 {
-                    dataGridView_stockProduct.DataSource = stockProduct.stockProductWithPidList(queryNewRow,lastSid);
+                    dataGridView_stockProduct.DataSource = stockProduct.stockProductListWithSid(queryNewRow,lastSid);
 
                     // Adding product to the dataGridView of the stockCompanyForm
                     stockCompanyForm.dataGridView_stockCompany.DataSource =
-                        stockProduct.stockProductWithPidList(queryNewRow, stockCompanyForm.getLastSid());
+                        stockProduct.stockProductListWithSid(queryNewRow, stockCompanyForm.getLastSid());
 
                     MessageBox.Show("Product is added to the Stock Successfully!", "Product Added Successfully", MessageBoxButtons.OK);
                 }
@@ -116,11 +148,11 @@ namespace StockSystem.Forms
                         MessageBoxIcon.Information);
 
                     // populate datagridView with genres
-                    dataGridView_stockProduct.DataSource = stockProduct.stockProductWithPidList(queryNewRow,lastSid);
+                    dataGridView_stockProduct.DataSource = stockProduct.stockProductListWithSid(queryNewRow,lastSid);
 
                     // Editing product to the dataGridView of the stockCompanyForm
                     stockCompanyForm.dataGridView_stockCompany.DataSource =
-                        stockProduct.stockProductWithPidList(queryNewRow, stockCompanyForm.getLastSid());
+                        stockProduct.stockProductListWithSid(queryNewRow, stockCompanyForm.getLastSid());
                 }
                 else
                 {
@@ -146,11 +178,11 @@ namespace StockSystem.Forms
                         MessageBoxIcon.Information);
 
                     // populate datagridView with productInfo
-                    dataGridView_stockProduct.DataSource = stockProduct.stockProductWithPidList(queryNewRow,lastSid);
+                    dataGridView_stockProduct.DataSource = stockProduct.stockProductListWithSid(queryNewRow,lastSid);
 
                     // Deleting product to the dataGridView of the stockCompanyForm
                     stockCompanyForm.dataGridView_stockCompany.DataSource =
-                        stockProduct.stockProductWithPidList(queryNewRow, stockCompanyForm.getLastSid());
+                        stockProduct.stockProductListWithSid(queryNewRow, stockCompanyForm.getLastSid());
                 }
                 else
                 {

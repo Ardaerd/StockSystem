@@ -108,7 +108,7 @@ namespace StockSystem.Classes
         }
 
         // Create function to return a table of stockProduct
-        public DataTable stockProductWithPidList(string query, int sid)
+        public DataTable stockProductListWithSid(string query, int sid)
         {
 
             OracleParameter[] param = new OracleParameter[1];
