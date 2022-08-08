@@ -69,6 +69,22 @@ namespace StockSystem.Forms
             {
                 int sid = stockTrackingForm.getSid();
                 dataGridView_stockProduct.DataSource = stockProduct.stockProductListWithSid(getQuerySid,sid);
+
+                numericUpDown_StockId.Enabled = false;
+                numericUpDownQuantity.Enabled = false;
+                numericUpDown_ProductId.Enabled = false;
+
+                button_add.Enabled = false;
+                button_delete.Enabled = false;
+                button_edit.Enabled = false;
+                button_selectProduct.Enabled = false;
+
+                int column = dataGridView_stockProduct.Columns.Count - 1;
+
+                for (int i = 0; i < column; i++)
+                {
+                        dataGridView_stockProduct.Columns[i].ReadOnly = true;
+                }
             }
 
             if (stockCompanyForm != null)
