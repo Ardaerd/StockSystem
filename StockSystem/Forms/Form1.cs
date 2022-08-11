@@ -25,6 +25,10 @@ namespace StockSystem
         public Form1()
         {
             InitializeComponent();
+            SoldProducts soldProducts = new SoldProducts();
+
+            Console.WriteLine("It is working...");
+            Console.WriteLine(soldProducts.getBarcode());
         }
 
         private void label2_Click(object sender, EventArgs e)

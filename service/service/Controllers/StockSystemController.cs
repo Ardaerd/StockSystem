@@ -11,9 +11,9 @@ namespace service.Controllers
         {
             new Product
             {
-                Price = 5.5,
+                Price = 8.5,
                 Quantity = 10,
-                Barcode = "23419414",
+                Barcode = "4245135",
                 CashRegister_No = 1,
                 IrsaliyeDate = DateTime.Now
             }
