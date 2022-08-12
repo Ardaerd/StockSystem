@@ -5,6 +5,7 @@ DROP TABLE company;
 DROP TABLE companyProduct;
 DROP TABLE stockProduct;
 DROP TABLE stockCompany;
+DROP TABLE soldProduct;
 
 DROP SEQUENCE pid_seq;
 
@@ -46,6 +47,7 @@ SELECT * FROM stockCompany;
 SELECT * FROM stockProduct;
 SELECT * FROM selectedCompanyProduct_view;
 SELECT * FROM stockTracking_view;
+SELECT * FROM soldProduct;
 
 SELECT * FROM stockTracking_view WHERE stockEntryDate BETWEEN TO_DATE('7/13/2022','MM/DD/YYYY') AND TO_DATE('8/13/2022','MM/DD/YYYY');
 
@@ -123,6 +125,15 @@ CREATE TABLE company(
     cname VARCHAR(100),
     insertDateTime DATE,
     updateDateTime DATE
+);
+
+CREATE TABLE soldProduct(
+    spid NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) Primary Key,
+    price NUMBER(5,2),
+    quantity NUMBER(38),
+    barcode VARCHAR(100),
+    cashRegister_No NUMBER(38),
+    irsaliyeDate DATE
 );
 
 CREATE TABLE companyProduct(

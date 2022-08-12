@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using service.Classes;
 
 namespace service.Controllers
 {
@@ -15,7 +16,8 @@ namespace service.Controllers
                 Quantity = 10,
                 Barcode = "4245135",
                 CashRegister_No = 1,
-                IrsaliyeDate = DateTime.Now
+                document_No = 1,
+                IrsaliyeDate = DateTime.Now.ToString("dd/MM/yyyy")
             }
         };
 

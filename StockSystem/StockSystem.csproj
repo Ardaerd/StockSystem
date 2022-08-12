@@ -82,12 +82,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\SoldProducts.cs" />
+    <Compile Include="Classes\SoldProduct.cs" />
+    <Compile Include="Classes\SoldProducts_API.cs" />
     <Compile Include="Classes\Company.cs" />
     <Compile Include="Classes\CompanyProduct.cs" />
     <Compile Include="Classes\ProductInfo.cs" />
     <Compile Include="Classes\ProductPrice.cs" />
-    <Compile Include="Classes\SoldProductsInfo.cs" />
+    <Compile Include="Classes\SoldProductsInfo_API.cs" />
     <Compile Include="Classes\StockCompany.cs" />
     <Compile Include="Classes\StockProduct.cs" />
     <Compile Include="Classes\StockTracking.cs" />
