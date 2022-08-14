@@ -82,6 +82,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\OrderProduct.cs" />
     <Compile Include="Classes\SoldProduct.cs" />
     <Compile Include="Classes\SoldProducts_API.cs" />
     <Compile Include="Classes\Company.cs" />

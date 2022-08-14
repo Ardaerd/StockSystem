@@ -22,6 +22,7 @@ namespace StockSystem
         private StockProductForm stockProductForm;
         private StockCompanyForm stockCompanyForm;
         private StockTrackingForm stockTrackingForm;
+        private OrderProductForm orderProductForm;
         public Form1()
         {
             InitializeComponent();
@@ -112,6 +113,13 @@ namespace StockSystem
         {
             stockTrackingForm = new StockTrackingForm(this);
             stockTrackingForm.Show();
+            this.Hide();
+        }
+
+        private void button_orderProduct_Click(object sender, EventArgs e)
+        {
+            orderProductForm = new OrderProductForm(this);
+            orderProductForm.Show();
             this.Hide();
         }
     }

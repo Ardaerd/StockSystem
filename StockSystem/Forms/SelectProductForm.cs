@@ -19,9 +19,10 @@ namespace StockSystem.Forms
         private ProductPriceForm productPriceForm = null;
         private CompanyProductForm companyProductForm = null;
         private StockProductForm stockProductForm = null;
+        private OrderProductForm orderProductForm = null;
         private string id;
         private string price;
-        public SelectProductForm(ProductPriceForm productPriceForm, CompanyProductForm companyProductForm, StockProductForm stockProductForm)
+        public SelectProductForm(ProductPriceForm productPriceForm, CompanyProductForm companyProductForm, StockProductForm stockProductForm, OrderProductForm orderProductForm)
         {
             productInfo = new ProductInfo();
             query = "SELECT pid,pname,price,stock FROM productInfo";
@@ -29,6 +30,7 @@ namespace StockSystem.Forms
             this.companyProductForm = companyProductForm;
             this.stockProductForm = stockProductForm;
             this.productPriceForm = productPriceForm;
+            this.orderProductForm = orderProductForm;
             companyProduct = new CompanyProduct();
         }
 
@@ -44,6 +46,12 @@ namespace StockSystem.Forms
             {
                 // Show table in dataGridView
                 dataGridView_selectProduct.DataSource = productInfo.productInfoList(query);
+            }
+
+            if (orderProductForm != null)
+            {
+                // Show table in dataGridView
+                dataGridView_selectProduct.DataSource = companyProduct.companyProductListConditions(orderProductForm.getCid());
             }
             
 
@@ -98,6 +106,12 @@ namespace StockSystem.Forms
             if (stockProductForm != null)
             {
                 stockProductForm.numericUpDown_ProductId.Text = id;
+                this.Close();
+            }
+
+            if (orderProductForm != null)
+            {
+                orderProductForm.numericUpDown_ProductId.Text = id;
                 this.Close();
             }
         }

@@ -35,6 +35,7 @@
             this.button_comapny = new System.Windows.Forms.Button();
             this.button_stockCompany = new System.Windows.Forms.Button();
             this.button_stockTracking = new System.Windows.Forms.Button();
+            this.button_orderProduct = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -119,11 +120,23 @@
             this.button_stockTracking.UseVisualStyleBackColor = true;
             this.button_stockTracking.Click += new System.EventHandler(this.button_stockTracking_Click);
             // 
+            // button_orderProduct
+            // 
+            this.button_orderProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_orderProduct.Location = new System.Drawing.Point(232, 154);
+            this.button_orderProduct.Name = "button_orderProduct";
+            this.button_orderProduct.Size = new System.Drawing.Size(225, 43);
+            this.button_orderProduct.TabIndex = 9;
+            this.button_orderProduct.Text = "Order Product";
+            this.button_orderProduct.UseVisualStyleBackColor = true;
+            this.button_orderProduct.Click += new System.EventHandler(this.button_orderProduct_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 294);
+            this.Controls.Add(this.button_orderProduct);
             this.Controls.Add(this.button_stockTracking);
             this.Controls.Add(this.button_stockCompany);
             this.Controls.Add(this.button_comapny);
@@ -148,6 +161,7 @@
         private System.Windows.Forms.Button button_comapny;
         private System.Windows.Forms.Button button_stockCompany;
         private System.Windows.Forms.Button button_stockTracking;
+        private System.Windows.Forms.Button button_orderProduct;
     }
 }
 

@@ -153,7 +153,7 @@ namespace StockSystem.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            selectProductForm = new SelectProductForm(this,null,null);
+            selectProductForm = new SelectProductForm(this,null,null,null);
             selectProductForm.Show();
         }
     }

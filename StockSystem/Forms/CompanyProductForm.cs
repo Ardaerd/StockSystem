@@ -30,7 +30,7 @@ namespace StockSystem.Forms
 
         private void button_selectProduct_Click(object sender, EventArgs e)
         {
-            selectProductForm = new SelectProductForm(null, this,null);
+            selectProductForm = new SelectProductForm(null, this,null,null);
             selectProductForm.Show();
         }
 
