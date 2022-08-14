@@ -17,6 +17,7 @@ namespace StockSystem.Forms
         private OrderProduct orderProduct;
         private SelectProductForm selectProductForm;
         private string query_1 = "SELECT * FROM orderProduct";
+        private int opid;
         public OrderProductForm(Form1 form)
         {
             InitializeComponent();
@@ -70,31 +71,10 @@ namespace StockSystem.Forms
             }
         }
 
-        private void button_add_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string cname = comboBox_companyName.Text;
-                int pid = (int)numericUpDown_ProductId.Value;
-                int quantity = (int)numericUpDownQuantity.Value;
-                DateTime delivery_date = dateTimePicker_deliveryDate.Value.Date;
-
-                if (orderProduct.addOrder(cname,pid,quantity,delivery_date))
-                {
-                    dataGridView_orderProduct.DataSource = orderProduct.getList(query_1);
-                    MessageBox.Show("Product is Ordered Successfully!", "Order", MessageBoxButtons.OK);
-
-                }
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-                throw;
-            }
-        }
-
         private void OrderProductForm_Load(object sender, EventArgs e)
         {
+            dateTimePicker_deliveryDate.Value = DateTime.Now;
+
             dataGridView_orderProduct.DataSource = orderProduct.getList(query_1);
 
             // customize datagridView header
@@ -113,6 +93,56 @@ namespace StockSystem.Forms
             for (int i = 0; i < column; i++)
             {
                 dataGridView_orderProduct.Columns[i].ReadOnly = true;
+            }
+        }
+
+        private void button_add_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string cname = comboBox_companyName.Text;
+                int pid = (int)numericUpDown_ProductId.Value;
+                int quantity = (int)numericUpDownQuantity.Value;
+                DateTime delivery_date = dateTimePicker_deliveryDate.Value.Date;
+
+                if (orderProduct.addOrder(cname,pid,quantity,delivery_date))
+                {
+                    dataGridView_orderProduct.DataSource = orderProduct.getList(query_1);
+                    MessageBox.Show("Product is Ordered Successfully!", "Order", MessageBoxButtons.OK);
+
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error");
+            }
+        }
+
+        private void button_delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (orderProduct.deleteOrder(opid))
+                {
+                    dataGridView_orderProduct.DataSource = orderProduct.getList(query_1);
+                    MessageBox.Show("Order is deleted Successfully!", "Order Delete", MessageBoxButtons.OK);
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error");
+            }
+        }
+
+        private void dataGridView_orderProduct_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                this.opid = Int32.Parse(dataGridView_orderProduct.CurrentRow.Cells[0].Value.ToString()); 
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error");
             }
         }
     }

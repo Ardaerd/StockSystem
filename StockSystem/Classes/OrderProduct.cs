@@ -43,6 +43,26 @@ namespace StockSystem.Classes
             }
         }
 
+        // Create function to delete data from orderProduct table
+        public bool deleteOrder(int opid)
+        {
+            string query = "DELETE FROM orderProduct WHERE opid = :opid";
+
+            OracleParameter[] param = new OracleParameter[1];
+
+            param[0] = new OracleParameter("opid", OracleDbType.Int32);
+            param[0].Value = opid;
+
+
+            if (db.setData(query, param) == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         // Create a function to get list of data from the table in the query
         public DataTable getList(string query)

@@ -115,6 +115,7 @@
             this.button_delete.Text = "Delete";
             this.button_delete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button_delete.UseVisualStyleBackColor = true;
+            this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
             // 
             // button_add
             // 
@@ -249,6 +250,7 @@
             this.dataGridView_orderProduct.RowTemplate.Height = 24;
             this.dataGridView_orderProduct.Size = new System.Drawing.Size(837, 240);
             this.dataGridView_orderProduct.TabIndex = 57;
+            this.dataGridView_orderProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_orderProduct_CellClick);
             // 
             // OrderProductForm
             // 
