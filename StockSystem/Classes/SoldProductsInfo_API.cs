@@ -13,7 +13,7 @@ namespace StockSystem.Classes
         public string barcode { get; set; }
         public int cashRegister_No { get; set; }
         public int document_No { get; set; }
-        public DateTime irsaliyeDate { get; set; }
+        public string irsaliyeDate { get; set; }
 
     }
 }

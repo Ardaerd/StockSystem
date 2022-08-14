@@ -13,11 +13,11 @@ namespace StockSystem.Classes
         private OracleDb db = new OracleDb();
 
         // Create a function to add product to the SoldProduct table
-        public bool addSoldProduct(double price, int quantity, string barcode, int cashRegister_No, DateTime irsaliyeDate)
+        public bool addSoldProduct(double price, int quantity, string barcode, int cashRegister_No, int document_No, DateTime irsaliyeDate)
         {
-            string query = "INSERT INTO soldProduct(price,quantity,barcode,cashRegister_No,irsaliyeDate) VALUES(:price,:quantity,:barcode,:cashRegister_No,:irsaliyeDate)";
+            string query = "INSERT INTO soldProduct(price,quantity,barcode,cashRegister_No,document_No,irsaliyeDate) VALUES(:price,:quantity,:barcode,:cashRegister_No,:document_No,:irsaliyeDate)";
 
-            OracleParameter[] param = new OracleParameter[5];
+            OracleParameter[] param = new OracleParameter[6];
 
             param[0] = new OracleParameter("price", OracleDbType.Double);
             param[0].Value = price;
@@ -31,8 +31,11 @@ namespace StockSystem.Classes
             param[3] = new OracleParameter("cashRegister_No", OracleDbType.Int32);
             param[3].Value = cashRegister_No;
 
-            param[4] = new OracleParameter("irsaliyeDate", OracleDbType.Date);
-            param[4].Value = irsaliyeDate;
+            param[4] = new OracleParameter("document_No", OracleDbType.Int32);
+            param[4].Value = document_No;
+
+            param[5] = new OracleParameter("irsaliyeDate", OracleDbType.Date);
+            param[5].Value = irsaliyeDate;
 
             if (db.setData(query, param) == 1)
             {

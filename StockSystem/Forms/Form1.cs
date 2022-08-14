@@ -51,9 +51,9 @@ namespace StockSystem
                     int cashRegister_No = info.cashRegister_No;
                     int document_No = info.document_No;
                     string barcode = info.barcode;
-                    DateTime irsaliyeDate = info.irsaliyeDate;
+                    DateTime irsaliyeDate = DateTime.ParseExact(info.irsaliyeDate, "dd/MM/yyyy", null); 
 
-                    if (soldProduct.addSoldProduct(price, quantity, barcode, cashRegister_No, irsaliyeDate))
+                    if (soldProduct.addSoldProduct(price, quantity, barcode, cashRegister_No,document_No, irsaliyeDate))
                     {
                         Console.WriteLine("Data is recived Successfully from the Server!");
                     }
