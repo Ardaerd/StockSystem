@@ -36,6 +36,7 @@
             this.button_stockCompany = new System.Windows.Forms.Button();
             this.button_stockTracking = new System.Windows.Forms.Button();
             this.button_orderProduct = new System.Windows.Forms.Button();
+            this.button_getData = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -131,11 +132,23 @@
             this.button_orderProduct.UseVisualStyleBackColor = true;
             this.button_orderProduct.Click += new System.EventHandler(this.button_orderProduct_Click);
             // 
+            // button_getData
+            // 
+            this.button_getData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_getData.Location = new System.Drawing.Point(478, 154);
+            this.button_getData.Name = "button_getData";
+            this.button_getData.Size = new System.Drawing.Size(225, 43);
+            this.button_getData.TabIndex = 10;
+            this.button_getData.Text = "Get Data";
+            this.button_getData.UseVisualStyleBackColor = true;
+            this.button_getData.Click += new System.EventHandler(this.button_getData_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 294);
+            this.Controls.Add(this.button_getData);
             this.Controls.Add(this.button_orderProduct);
             this.Controls.Add(this.button_stockTracking);
             this.Controls.Add(this.button_stockCompany);
@@ -162,6 +175,7 @@
         private System.Windows.Forms.Button button_stockCompany;
         private System.Windows.Forms.Button button_stockTracking;
         private System.Windows.Forms.Button button_orderProduct;
+        private System.Windows.Forms.Button button_getData;
     }
 }
 

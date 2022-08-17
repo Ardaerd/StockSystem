@@ -23,47 +23,10 @@ namespace StockSystem
         private StockCompanyForm stockCompanyForm;
         private StockTrackingForm stockTrackingForm;
         private OrderProductForm orderProductForm;
+        private ServerDataForm serverDataForm;
         public Form1()
         {
             InitializeComponent();
-
-            try
-            {
-                SoldProduct soldProduct = new SoldProduct();
-
-                if (soldProduct.deleteSoldProduct())
-                {
-                    Console.WriteLine("Old data is deleted !");
-                }
-                else
-                {
-                    MessageBox.Show("Old data couldn't delete!", "Server", MessageBoxButtons.OK);
-
-                }
-
-                SoldProducts_API soldProducts = new SoldProducts_API();
-
-                List<SoldProductsInfo_API> Info = soldProducts.Get_SoldProducts();
-
-                foreach (SoldProductsInfo_API info in Info)
-                {
-                    double price = info.price;
-                    int quantity = info.quantity;
-                    int cashRegister_No = info.cashRegister_No;
-                    int document_No = info.document_No;
-                    string barcode = info.barcode;
-                    DateTime irsaliyeDate = DateTime.ParseExact(info.irsaliyeDate, "dd/MM/yyyy", null); 
-
-                    if (soldProduct.addSoldProduct(price, quantity, barcode, cashRegister_No,document_No, irsaliyeDate))
-                    {
-                        Console.WriteLine("Data is recived Successfully from the Server!");
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Error");
-            }
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -121,6 +84,51 @@ namespace StockSystem
             orderProductForm = new OrderProductForm(this);
             orderProductForm.Show();
             this.Hide();
+        }
+
+        private void button_getData_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SoldProduct soldProduct = new SoldProduct();
+
+                if (soldProduct.deleteSoldProduct())
+                {
+                    Console.WriteLine("Old data is deleted !");
+                }
+                else
+                {
+                    MessageBox.Show("Old data couldn't delete!", "Server", MessageBoxButtons.OK);
+
+                }
+
+                SoldProducts_API soldProducts = new SoldProducts_API();
+
+                List<SoldProductsInfo_API> Info = soldProducts.Get_SoldProducts();
+
+                foreach (SoldProductsInfo_API info in Info)
+                {
+                    double price = info.price;
+                    int quantity = info.quantity;
+                    int cashRegister_No = info.cashRegister_No;
+                    int document_No = info.document_No;
+                    string barcode = info.barcode;
+                    DateTime irsaliyeDate = DateTime.ParseExact(info.irsaliyeDate, "dd/MM/yyyy", null);
+
+                    if (soldProduct.addSoldProduct(price, quantity, barcode, cashRegister_No, document_No, irsaliyeDate))
+                    {
+                        Console.WriteLine("Data is recived Successfully from the Server!");
+                    }
+                }
+
+                serverDataForm = new ServerDataForm(this);
+                serverDataForm.Show();
+                this.Hide();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error");
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,6 +64,15 @@ namespace StockSystem.Classes
                 Console.WriteLine(e);
                 return false;
             }
+        }
+
+        // Create function to get data from soldProduct table
+        public DataTable getSoldProductsList(string query)
+        {
+            DataTable table = new DataTable();
+            table = db.getData(query, null);
+
+            return table;
         }
     }
 }

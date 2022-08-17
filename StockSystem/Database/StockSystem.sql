@@ -6,6 +6,7 @@ DROP TABLE companyProduct;
 DROP TABLE stockProduct;
 DROP TABLE stockCompany;
 DROP TABLE soldProduct;
+DROP TABLE orderProduct;
 
 DROP SEQUENCE pid_seq;
 
@@ -33,6 +34,7 @@ DROP TRIGGER updateDateTime_trigger_stockCompany;
 DROP TRIGGER insertDateTime_trigger_stockProduct; 
 DROP TRIGGER updateDateTime_trigger_stockProduct;
 DROP TRIGGER addProductPrice_productInfo_trigger;
+DROP TRIGGER updateStock_soldProduct_trigger;
 
 
 INSERT INTO productInfo(pname,barcode,sim,pic,price,stock) VALUES('Chocolate', 12345, '453123468', '', 6.99, 10);
@@ -133,7 +135,16 @@ CREATE TABLE soldProduct(
     quantity NUMBER(38),
     barcode VARCHAR(100),
     cashRegister_No NUMBER(38),
+    document_No Number(38),
     irsaliyeDate DATE
+);
+
+CREATE TABLE orderProduct(
+    opid NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) Primary Key,
+    cname VARCHAR(100),
+    pid NUMBER(38),
+    quantity NUMBER(38),
+    deliveryDate Date  
 );
 
 CREATE TABLE companyProduct(
@@ -223,6 +234,16 @@ FOR EACH ROW
 BEGIN
     UPDATE productInfo SET stock = stock + :NEW.quantity WHERE pid = :NEW.pid;
 END updateStock_stockProduct_trigger;
+
+-- for updating stock in productInfo when soldProduct is inserted
+CREATE TRIGGER updateStock_soldProduct_trigger
+AFTER INSERT 
+ON soldProduct
+FOR EACH ROW
+BEGIN 
+        UPDATE productInfo SET stock = stock - :NEW.quantity WHERE barcode = :NEW.barcode;
+END updateStock_soldProduct_trigger;
+
 
 -- for updating stock in productInfo when stockProduct is deleting
 CREATE TRIGGER deleteStock_stockProduct_trigger
