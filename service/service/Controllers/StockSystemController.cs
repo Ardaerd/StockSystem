@@ -12,6 +12,7 @@ namespace service.Controllers
         {
             new Product
             {
+                pid = 1,
                 Price = 8.5,
                 Quantity = 10,
                 Barcode = "4245135",
