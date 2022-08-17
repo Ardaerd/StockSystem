@@ -11,12 +11,12 @@ using StockSystem.Classes;
 
 namespace StockSystem.Forms
 {
-    public partial class ServerDataForm : Form
+    public partial class ServiceDataForm : Form
     {
         private Form1 form;
         private SoldProduct soldProduct;
         private string query = "SELECT * FROM soldProduct";
-        public ServerDataForm(Form1 form)
+        public ServiceDataForm(Form1 form)
         {
             InitializeComponent();
             this.form = form;

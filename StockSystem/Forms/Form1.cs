@@ -23,7 +23,7 @@ namespace StockSystem
         private StockCompanyForm stockCompanyForm;
         private StockTrackingForm stockTrackingForm;
         private OrderProductForm orderProductForm;
-        private ServerDataForm serverDataForm;
+        private ServiceDataForm serverDataForm;
         public Form1()
         {
             InitializeComponent();
@@ -121,7 +121,7 @@ namespace StockSystem
                     }
                 }
 
-                serverDataForm = new ServerDataForm(this);
+                serverDataForm = new ServiceDataForm(this);
                 serverDataForm.Show();
                 this.Hide();
             }

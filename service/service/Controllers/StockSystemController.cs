@@ -21,16 +21,27 @@ namespace service.Controllers
             }
         };
 
-        [HttpGet]
+        [HttpGet("Get")]
         public async Task<ActionResult<List<Product>>> Get()
         {
             return Ok(products);
         }
 
-        [HttpPost]
+        [HttpPost("SellProduct")]
         public async Task<ActionResult<List<Product>>> sellProduct(Product product)
         {
             products.Add(product);
+            return Ok(products);
+        }
+
+        [HttpPost("SellProductList")]
+        public async Task<ActionResult<List<Product>>> sellProductList(List<Product> listOfProducts)
+        {
+            foreach (var product in listOfProducts)
+            {
+                products.Add(product);
+            }
+
             return Ok(products);
         }
     }
