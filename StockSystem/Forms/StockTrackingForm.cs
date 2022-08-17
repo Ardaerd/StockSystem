@@ -17,7 +17,14 @@ namespace StockSystem.Forms
         private StockTracking stockTracking;
         private Form1 form1;
         private StockProductForm stockProductForm;
+        private StockCompanyForm stockCompanyForm;
         private int sid;
+        private int cid;
+        private int tip;
+        private string status;
+        private int irsaliyeNo;
+        private string irsaliyeDate;
+
         public StockTrackingForm(Form1 form1)
         {
             InitializeComponent();
@@ -117,11 +124,16 @@ namespace StockSystem.Forms
         {
             try
             {
-                stockProductForm = new StockProductForm(null, this);
+                stockCompanyForm = new StockCompanyForm(form1, this);
 
                 this.sid = Int32.Parse(dataGridView_stock.CurrentRow.Cells[0].Value.ToString());
+                this.cid = Int32.Parse(dataGridView_stock.CurrentRow.Cells[1].Value.ToString());
+                this.tip = Int32.Parse(dataGridView_stock.CurrentRow.Cells[3].Value.ToString());
+                this.status = dataGridView_stock.CurrentRow.Cells[4].Value.ToString();
+                this.irsaliyeDate = dataGridView_stock.CurrentRow.Cells[6].Value.ToString();
+                this.irsaliyeNo = Int32.Parse(dataGridView_stock.CurrentRow.Cells[7].Value.ToString());
 
-                stockProductForm.Show();
+                stockCompanyForm.Show();
                 this.Hide();
             }
             catch (Exception exception)
@@ -133,6 +145,31 @@ namespace StockSystem.Forms
         public int getSid()
         {
             return sid;
+        }
+
+        public int getCid()
+        {
+            return this.cid;
+        }
+
+        public int getTip()
+        {
+            return this.tip;
+        }
+
+        public string getStatus()
+        {
+            return this.status;
+        }
+
+        public int getIrsaliyeNo()
+        {
+            return this.irsaliyeNo;
+        }
+
+        public string getIrsaliyeDate()
+        {
+            return this.irsaliyeDate;
         }
     }
 }

@@ -67,7 +67,7 @@ namespace StockSystem
 
         private void button_stockCompany_Click(object sender, EventArgs e)
         {
-            stockCompanyForm = new StockCompanyForm(this);
+            stockCompanyForm = new StockCompanyForm(this,null);
             stockCompanyForm.Show();
             this.Hide();
         }

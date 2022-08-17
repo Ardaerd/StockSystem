@@ -109,5 +109,20 @@ namespace StockSystem.Classes
 
             return table;
         }
+
+        // Create function to return a table of stockCompany according to the sid
+        public DataTable stockCompanyListWithSid(string query, int sid)
+        {
+
+            OracleParameter[] param = new OracleParameter[1];
+
+            param[0] = new OracleParameter("sid", OracleDbType.Int32);
+            param[0].Value = sid;
+
+            DataTable table = new DataTable();
+            table = db.getData(query, param);
+
+            return table;
+        }
     }
 }

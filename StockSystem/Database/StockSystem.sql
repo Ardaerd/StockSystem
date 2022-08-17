@@ -50,6 +50,7 @@ SELECT * FROM stockProduct;
 SELECT * FROM selectedCompanyProduct_view;
 SELECT * FROM stockTracking_view;
 SELECT * FROM soldProduct;
+SELECT * FROM orderProduct;
 
 SELECT * FROM stockTracking_view WHERE stockEntryDate BETWEEN TO_DATE('7/13/2022','MM/DD/YYYY') AND TO_DATE('8/13/2022','MM/DD/YYYY');
 
@@ -130,13 +131,14 @@ CREATE TABLE company(
 );
 
 CREATE TABLE soldProduct(
-    spid NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) Primary Key,
+    pid NUMBER(38),
     price NUMBER(5,2),
     quantity NUMBER(38),
     barcode VARCHAR(100),
     cashRegister_No NUMBER(38),
     document_No Number(38),
-    irsaliyeDate DATE
+    irsaliyeDate DATE,
+    PRIMARY KEY(pid,barcode)
 );
 
 CREATE TABLE orderProduct(

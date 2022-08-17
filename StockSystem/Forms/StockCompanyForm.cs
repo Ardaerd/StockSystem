@@ -19,14 +19,20 @@ namespace StockSystem.Forms
         private StockCompany stockCompany;
         private StockProduct stockProduct;
         private StockProductForm stockProductForm;
+        private StockTrackingForm stockTrackingForm;
         private string queryForCompany = "SELECT * FROM stockCompany_view ORDER BY sid ASC";
         private string queryForProduct = "SELECT * FROM stockProduct_view ORDER BY sid ASC";
         private string queryNewRows = "SELECT * FROM stockProduct_view WHERE sid > :sid ORDER BY sid ASC";
+        private string getQuerySid = "SELECT * FROM stockProduct_view WHERE sid = :sid";
         private int sid;
         private int cid;
-        private string clickedPid;
         private int lastSid;
-        public StockCompanyForm(Form1 form1)
+        private string clickedPid;
+        private string clikedSid;
+        private string clickedCid;
+        private string clikedPrice;
+        private string clickedQuantity;
+        public StockCompanyForm(Form1 form1, StockTrackingForm stockTrackingForm)
         {
             InitializeComponent();
             this.form1 = form1;
@@ -34,12 +40,21 @@ namespace StockSystem.Forms
             stockProduct = new StockProduct();
             int row = stockProduct.stockProductList(queryForProduct).Rows.Count - 1;
             lastSid = Int32.Parse(stockProduct.stockProductList(queryForProduct).Rows[row]["sid"].ToString());
+            this.stockTrackingForm = stockTrackingForm;
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
-            this.Close();
-            form1.Show();
+            if (stockTrackingForm != null)
+            {
+                this.Close();
+                stockTrackingForm.Show();
+            }
+            else
+            {
+                this.Close();
+                form1.Show();
+            }
         }
 
         private void label2_MouseEnter(object sender, EventArgs e)
@@ -63,7 +78,6 @@ namespace StockSystem.Forms
             dateTimePicker_IrsaliyeDate.Format = DateTimePickerFormat.Custom;
             dateTimePicker_IrsaliyeDate.CustomFormat = "dd/MM/yyyy";
 
-
             // Show table in dataGridView
             dataGridView_stockCompany.DataSource = stockProduct.stockProductListWithSid(queryNewRows,lastSid);
 
@@ -78,17 +92,34 @@ namespace StockSystem.Forms
 
             dataGridView_stockCompany.EnableHeadersVisualStyles = false;
 
-            int column = dataGridView_stockCompany.Columns.Count - 1;
 
-            for (int i = 0; i < column; i++)
+            if (stockTrackingForm != null)
             {
-                if (i != 4)
+                int sid = stockTrackingForm.getSid();
+                dataGridView_stockCompany.DataSource = stockProduct.stockProductListWithSid(getQuerySid, sid);
+
+                int column = dataGridView_stockCompany.Columns.Count - 1;
+
+                for (int i = 0; i < column; i++)
                 {
-                    dataGridView_stockCompany.Columns[i].ReadOnly = true;
+                    if (i != 4)
+                    {
+                        dataGridView_stockCompany.Columns[i].ReadOnly = true;
+                    }
                 }
             }
 
             addingStatus();
+
+            if (stockTrackingForm != null)
+            {
+                numericUpDown_stockId.Text = stockTrackingForm.getSid().ToString();
+                numericUpDown_companyId.Text = stockTrackingForm.getCid().ToString();
+                numericUpDown_tip.Text = stockTrackingForm.getTip().ToString();
+                numericUpDown_IrsaliyeNo.Text = stockTrackingForm.getIrsaliyeNo().ToString();
+                comboBox_status.Text = stockTrackingForm.getStatus();
+                dateTimePicker_IrsaliyeDate.Text = stockTrackingForm.getIrsaliyeDate();
+            }
         }
 
         private void button_add_Click(object sender, EventArgs e)
@@ -149,24 +180,23 @@ namespace StockSystem.Forms
         {
             try
             {
-                int sid = (int)numericUpDown_stockId.Value;
-                int cid = (int)numericUpDown_companyId.Value;
-                int tip = (int)numericUpDown_tip.Value;
-                string status = comboBox_status.SelectedValue.ToString();
-                DateTime irsaliyeDate = dateTimePicker_IrsaliyeDate.Value.Date;
-                int irsaliyeNo = (int)numericUpDown_IrsaliyeNo.Value;
+                int sid = Int32.Parse(clikedSid);
+                int pid = Int32.Parse(clickedPid);
+                int quantity = Int32.Parse(clickedQuantity);
+                double price = Double.Parse(clikedPrice);
+                double total = price * quantity;
 
-                if (stockCompany.editStockProduct(sid, cid, tip, status,irsaliyeDate,irsaliyeNo))
+                if (stockProduct.editStockProduct(sid, pid, quantity, total))
                 {
-                    MessageBox.Show("Stock Company is edited successfully", "Edit Stock Company", MessageBoxButtons.OK,
+                    MessageBox.Show("Quantity of the product is edited successfully", "Edit Product Quantity", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
 
                     // populate datagridView with genres
-                    dataGridView_stockCompany.DataSource = stockProduct.stockProductListWithSid(queryNewRows, lastSid);
+                    dataGridView_stockCompany.DataSource = stockProduct.stockProductListWithSid(getQuerySid, sid);
                 }
                 else
                 {
-                    MessageBox.Show("StockCompany price is not edited", "StockCompany Price Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Product price is not edited", "Product Price Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception exception)
@@ -217,7 +247,10 @@ namespace StockSystem.Forms
 
         private void dataGridView_stockCompany_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            this.clikedSid = dataGridView_stockCompany.CurrentRow.Cells[0].Value.ToString();
             this.clickedPid = dataGridView_stockCompany.CurrentRow.Cells[1].Value.ToString();
+            this.clikedPrice = dataGridView_stockCompany.CurrentRow.Cells[3].Value.ToString();
+            this.clickedQuantity = dataGridView_stockCompany.CurrentRow.Cells[4].Value.ToString();
         }
 
         private void button_Done_Click_1(object sender, EventArgs e)
@@ -243,7 +276,7 @@ namespace StockSystem.Forms
                     MessageBox.Show("Products are not Confirmed", "Confirmed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-                StockCompanyForm stockCompanyForm = new StockCompanyForm(this.form1);
+                StockCompanyForm stockCompanyForm = new StockCompanyForm(this.form1,null);
                 this.Close();
                 stockCompanyForm.Show();
 
@@ -285,11 +318,6 @@ namespace StockSystem.Forms
             }
         }
 
-        private void dataGridView_stockCompany_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void addingStatus()
         {
             // Bind combobox to dictionary
@@ -302,6 +330,11 @@ namespace StockSystem.Forms
             // Get combobox selection (in handler)
             string value = ((KeyValuePair<string, string>)comboBox_status.SelectedItem).Value;
             comboBox_status.SelectedIndex = -1;
+        }
+
+        private void dataGridView_stockCompany_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            clickedQuantity = dataGridView_stockCompany.CurrentRow.Cells[4].Value.ToString();
         }
     }
 }

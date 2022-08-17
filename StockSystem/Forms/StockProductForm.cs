@@ -213,10 +213,17 @@ namespace StockSystem.Forms
 
         private void dataGridView_stockProduct_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            numericUpDown_StockId.Text = dataGridView_stockProduct.CurrentRow.Cells[0].Value.ToString();
-            numericUpDown_ProductId.Text = dataGridView_stockProduct.CurrentRow.Cells[1].Value.ToString();
-            numericUpDownQuantity.Text = dataGridView_stockProduct.CurrentRow.Cells[4].Value.ToString();
-            price = (double)dataGridView_stockProduct.CurrentRow.Cells[3].Value;
+            try
+            {
+                numericUpDown_StockId.Text = dataGridView_stockProduct.CurrentRow.Cells[0].Value.ToString();
+                numericUpDown_ProductId.Text = dataGridView_stockProduct.CurrentRow.Cells[1].Value.ToString();
+                numericUpDownQuantity.Text = dataGridView_stockProduct.CurrentRow.Cells[4].Value.ToString();
+                price = (double)dataGridView_stockProduct.CurrentRow.Cells[3].Value;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
         }
 
         public int GetCid()
