@@ -41,14 +41,17 @@ namespace StockSystem.Forms
 
                 foreach (SoldProductsInfo_API info in Info)
                 {
-                    double price = info.price;
-                    int quantity = info.quantity;
-                    int cashRegister_No = info.cashRegister_No;
-                    int document_No = info.document_No;
-                    string barcode = info.barcode;
-                    DateTime irsaliyeDate = DateTime.ParseExact(info.irsaliyeDate, "dd/MM/yyyy", null);
+                    soldProducts.setPid(info.pid);
+                    soldProducts.setPrice(info.price); 
+                    soldProducts.setQuantity(info.quantity);
+                    soldProducts.Set_cashRegister_No(info.cashRegister_No);
+                    soldProducts.Set_document_No(info.document_No);
+                    soldProducts.setBarcode(info.barcode);
 
-                    if (soldProduct.addSoldProduct(price, quantity, barcode, cashRegister_No, document_No, irsaliyeDate))
+                    DateTime irsaliyeDate = DateTime.ParseExact(info.irsaliyeDate, "dd/MM/yyyy", null);
+                    soldProducts.Set_irsaliyeDate(irsaliyeDate);
+
+                    if (soldProduct.addSoldProduct(soldProducts.getPid(), soldProducts.getPrice(), soldProducts.getQuantity(), soldProducts.getBarcode(), soldProducts.Get_cashRegister_No(), soldProducts.Get_document_No(), soldProducts.get_irsaliyeDate()))
                     {
                         Console.WriteLine("Data is recived Successfully from the Server!");
                     }

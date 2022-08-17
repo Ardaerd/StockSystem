@@ -14,29 +14,32 @@ namespace StockSystem.Classes
         private OracleDb db = new OracleDb();
 
         // Create a function to add product to the SoldProduct table
-        public bool addSoldProduct(double price, int quantity, string barcode, int cashRegister_No, int document_No, DateTime irsaliyeDate)
+        public bool addSoldProduct(int pid,double price, int quantity, string barcode, int cashRegister_No, int document_No, DateTime irsaliyeDate)
         {
-            string query = "INSERT INTO soldProduct(price,quantity,barcode,cashRegister_No,document_No,irsaliyeDate) VALUES(:price,:quantity,:barcode,:cashRegister_No,:document_No,:irsaliyeDate)";
+            string query = "INSERT INTO soldProduct(pid,price,quantity,barcode,cashRegister_No,document_No,irsaliyeDate) VALUES(:pid,:price,:quantity,:barcode,:cashRegister_No,:document_No,:irsaliyeDate)";
 
-            OracleParameter[] param = new OracleParameter[6];
+            OracleParameter[] param = new OracleParameter[7];
 
-            param[0] = new OracleParameter("price", OracleDbType.Double);
-            param[0].Value = price;
+            param[0] = new OracleParameter("pid", OracleDbType.Int32);
+            param[0].Value = pid;
 
-            param[1] = new OracleParameter("quantity", OracleDbType.Int32);
-            param[1].Value = quantity;
+            param[1] = new OracleParameter("price", OracleDbType.Double);
+            param[1].Value = price;
 
-            param[2] = new OracleParameter("barcode", OracleDbType.Varchar2);
-            param[2].Value = barcode;
+            param[2] = new OracleParameter("quantity", OracleDbType.Int32);
+            param[2].Value = quantity;
 
-            param[3] = new OracleParameter("cashRegister_No", OracleDbType.Int32);
-            param[3].Value = cashRegister_No;
+            param[3] = new OracleParameter("barcode", OracleDbType.Varchar2);
+            param[3].Value = barcode;
 
-            param[4] = new OracleParameter("document_No", OracleDbType.Int32);
-            param[4].Value = document_No;
+            param[4] = new OracleParameter("cashRegister_No", OracleDbType.Int32);
+            param[4].Value = cashRegister_No;
 
-            param[5] = new OracleParameter("irsaliyeDate", OracleDbType.Date);
-            param[5].Value = irsaliyeDate;
+            param[5] = new OracleParameter("document_No", OracleDbType.Int32);
+            param[5].Value = document_No;
+
+            param[6] = new OracleParameter("irsaliyeDate", OracleDbType.Date);
+            param[6].Value = irsaliyeDate;
 
             if (db.setData(query, param) == 1)
             {

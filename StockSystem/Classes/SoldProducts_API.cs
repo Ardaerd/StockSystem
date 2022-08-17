@@ -13,6 +13,7 @@ namespace StockSystem.Classes
     {
         private double price;
 
+        private int pid;
         private int quantity;
         private int cashRegister_No;
         private int document_No;
@@ -26,7 +27,7 @@ namespace StockSystem.Classes
             using (WebClient web = new WebClient())
             {
 
-                string url = "https://localhost:7135/api/StockSystem";
+                string url = "https://localhost:7135/api/StockSystem/Get";
 
                 var json = web.DownloadString(url);
                 List<SoldProductsInfo_API> Info = JsonConvert.DeserializeObject<List<SoldProductsInfo_API>>(json);
@@ -35,9 +36,24 @@ namespace StockSystem.Classes
             }
         }
 
+        public int getPid()
+        {
+            return this.pid;
+        }
+
+        public void setPid(int pid)
+        {
+            this.pid = pid;
+        }
+
         public double getPrice()
         {
             return this.price;
+        }
+
+        public void setPrice(double price)
+        {
+            this.price = price;
         }
 
         public int getQuantity()
@@ -45,9 +61,19 @@ namespace StockSystem.Classes
             return this.quantity;
         }
 
+        public void setQuantity(int quantity)
+        {
+            this.quantity = quantity;
+        }
+
         public int Get_cashRegister_No()
         {
             return this.cashRegister_No;
+        }
+
+        public void Set_cashRegister_No(int cashRegister_No)
+        {
+            this.cashRegister_No = cashRegister_No;
         }
 
         public int Get_document_No()
@@ -55,14 +81,29 @@ namespace StockSystem.Classes
             return this.document_No;
         }
 
+        public void Set_document_No(int document_No)
+        {
+            this.document_No = document_No;
+        }
+
         public string getBarcode()
         {
             return this.barcode;
         }
 
+        public void setBarcode(string barcode)
+        {
+            this.barcode = barcode;
+        }
+
         public DateTime get_irsaliyeDate()
         {
             return this.irsaliyeDate;
+        }
+
+        public void Set_irsaliyeDate(DateTime irsaliyeDate)
+        {
+            this.irsaliyeDate = irsaliyeDate;
         }
     }
 }
